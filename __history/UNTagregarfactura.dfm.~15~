@@ -1,0 +1,123 @@
+object FrmAgregarFactura: TFrmAgregarFactura
+  Left = 0
+  Top = 0
+  Caption = 'Agregar Factura'
+  ClientHeight = 272
+  ClientWidth = 447
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 104
+    Top = 24
+    Width = 38
+    Height = 21
+    Caption = 'Factura'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Roboto Cn'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 104
+    Top = 67
+    Width = 27
+    Height = 15
+    Caption = 'CUFE'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Roboto Cn'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 104
+    Top = 112
+    Width = 34
+    Height = 15
+    Caption = 'Estado'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Roboto Cn'
+    Font.Style = []
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 104
+    Top = 160
+    Width = 24
+    Height = 15
+    Caption = 'Error'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Roboto Cn'
+    Font.Style = []
+    ParentFont = False
+  end
+  object BtnAceptar: TcxButton
+    Left = 120
+    Top = 224
+    Width = 75
+    Height = 25
+    Caption = 'Aceptar'
+    TabOrder = 0
+    OnClick = BtnAceptarClick
+  end
+  object BtnCancelar: TcxButton
+    Left = 222
+    Top = 224
+    Width = 75
+    Height = 25
+    Caption = 'Cancelar'
+    TabOrder = 1
+    OnClick = BtnCancelarClick
+  end
+  object TxtIdDetaTransaccion: TcxDBTextEdit
+    Left = 176
+    Top = 24
+    DataBinding.DataField = 'iddetaTransaccion'
+    DataBinding.DataSource = DtsMostrarDatos
+    TabOrder = 2
+    Width = 121
+  end
+  object TxtCufe: TcxDBTextEdit
+    Left = 176
+    Top = 67
+    DataBinding.DataField = 'cufe'
+    DataBinding.DataSource = DtsMostrarDatos
+    TabOrder = 3
+    Width = 121
+  end
+  object TxtEstado: TcxDBTextEdit
+    Left = 176
+    Top = 112
+    DataBinding.DataField = 'estado'
+    DataBinding.DataSource = DtsMostrarDatos
+    TabOrder = 4
+    Width = 121
+  end
+  object TxtError: TcxDBTextEdit
+    Left = 176
+    Top = 160
+    DataBinding.DataField = 'error'
+    DataBinding.DataSource = DtsMostrarDatos
+    TabOrder = 5
+    Width = 121
+  end
+  object DtsMostrarDatos: TDataSource
+    DataSet = DMconn.CdtsDetaTransaccion
+    Left = 392
+    Top = 16
+  end
+end

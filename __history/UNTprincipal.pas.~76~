@@ -1,0 +1,81 @@
+unit UNTprincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxClasses, dxCustomTileControl, dxTileControl, FireDAC.VCLUI.Wait,
+  cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage, cxEdit,
+  cxNavigator, Data.DB, cxDBData, cxGridLevel, cxGridCustomTableView,
+  cxGridTableView, cxGridDBTableView, cxGridCustomView, cxGrid, Vcl.Grids,
+  Vcl.DBGrids, Datasnap.DBClient, UNTejemplo, UNTmenuprincipal;
+
+type
+  TForEmpresas = class(TForm)
+    dxTileControl1: TdxTileControl;
+    dxTileControl1Group1: TdxTileControlGroup;
+    ClientDataSet1: TClientDataSet;
+    DataSource1: TDataSource;
+    DataSource2: TDataSource;
+    DBGrid1: TDBGrid;
+    cxGrid1: TcxGrid;
+    cxGrid1DBTableView1: TcxGridDBTableView;
+    cxGrid1DBTableView1CONTADOR: TcxGridDBColumn;
+    cxGrid1Level1: TcxGridLevel;
+    procedure FormCreate(Sender: TObject);
+    Procedure TlcEmpresasClick(Sender :TdxTileControlItem);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ForEmpresas: TForEmpresas;
+  Fprincipal: TForMenuPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses UNTconn;
+
+procedure TForEmpresas.FormCreate(Sender: TObject);
+var
+  I: Integer;
+  AItem: TdxTileControlItem;
+  nombreEmpresa: String;
+  codigoEmpresa: String;
+  ds: TDataSet;
+const
+  Colores1: Array[1..9] of TColor = ($00622DFF,$00EF882D,$00C11A45,$202749D3,$00009E00,$00A800A6,$00378028,$000233A6,$00839216);
+begin
+  dxTileControl1.BeginUpdate;
+  ds := DBGrid1.DataSource.DataSet;
+  ds.First;
+  try
+  for I := 1 to DMconn.contadorNumero do
+  begin
+    AItem := dxTileControl1.CreateItem(False, dxTileControl1Group1);
+    nombreEmpresa:= ds.FieldByName('NOMBRE').AsString;
+    codigoEmpresa:= ds.FieldByName('CODIGO').AsString;
+    AItem.Text1.Value := nombreEmpresa;
+    AItem.Style.GradientBeginColor:= Colores1[I];
+    aitem.Tag := ds.FieldByName('CODIGO').AsInteger;
+    aitem.Text1.Value := ds.FieldByName('NOMBRE').AsString;
+    aitem.OnClick := TlcEmpresasClick;
+    ds.Next;
+  end;
+  finally
+    dxTileControl1.EndUpdate;
+  end;
+end;
+
+procedure TForEmpresas.TlcEmpresasClick(Sender: TdxTileControlItem);
+begin
+  Fprincipal := TForMenuPrincipal.Create(nil);
+  Fprincipal.ShowModal;
+end;
+
+end.

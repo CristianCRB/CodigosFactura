@@ -1,0 +1,15 @@
+program Project2;
+
+uses
+  Vcl.Forms,
+  UNTprincipal in 'UNTprincipal.pas' {ForEmpresas},
+  UNTconn in 'UNTconn.pas' {DMconn: TDataModule};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDMconn, DMconn);
+  Application.Run;
+end.

@@ -1,0 +1,65 @@
+unit UNTnc;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs,  cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
+  Vcl.Menus, Vcl.StdCtrls, cxButtons, cxTextEdit, cxLabel,UNTconn,
+
+  {unidades a incluir}
+  EncdDecd,IdAuthentication, IdIOHandler,
+  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, IdBaseComponent,
+  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP,IdGlobal,
+  System.JSON,IdServerIOHandler,System.NetEncoding, DebenuPDFLibrary1711,
+  dxCustomTileControl, dxTileControl, FIBDatabase, pFIBDatabase, FIBDataSet,
+  pFIBDataSet, Datasnap.DBClient, SimpleDS, Data.DBXMySQL, Data.DB, Data.FMTBcd,
+  Data.SqlExpr, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
+  cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid,
+  cxGroupBox, cxRadioGroup;
+  type  TRespuestas= Record
+     cufe:AnsiString;
+     Xml:AnsiString;
+     documento:string;
+     error:AnsiString;
+  end;
+type
+  TFrmNC = class(TFrame)
+  procedure cxButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+    vRegactualiza:TRespuestas;
+    procedure GenerarXML(pDocumento:String);
+    Procedure ActualizaEstado(pDocumento,pXML,pCufe,pError:String);
+    Function EncodeFile(const FileName: string): AnsiString;
+    Function ObtenerToken(pUsuario,pPassword,pUrl:String):AnsiString;
+    Function EnvioXMLObtenerCufe(pUsuario,pPassword,pUrl,pToken:String;pvXmlEncode:WideString):AnsiString;
+//    Function EnvioPDF(pUsuario,pPassword,pUrl,pCufe:String;pPDFEncode:WideString):AnsiString;
+
+
+//  Function EncodeFile(const FileName: string): AnsiString;
+//  Function ObtenerToken(pUsuario,pPassword,pUrl:String):AnsiString;
+//  Function EnvioXMLObtenerCufe(pUsuario,pPassword,pUrl,pToken:String;pvXmlEncode:WideString):AnsiString;
+//  Function EnvioPDF(pUsuario,pPassword,pUrl,pCufe:String;pPDFEncode:WideString):AnsiString;
+
+  public
+    { Public declarations }
+    PDFLibrary: TDebenuPDFLibrary1711;
+    UnlockResult: Integer;
+    Licencia: WideString;
+    Factura: WideString;
+    NFactura: WideString;
+    QR: WideString;
+    CUFE: WideString;
+  end;
+
+var
+  FrmNC: TFrmNC;
+
+implementation
+
+{$R *.dfm}
+
+end.

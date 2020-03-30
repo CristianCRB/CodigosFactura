@@ -1,0 +1,185 @@
+<?xml version="1.0" standalone="yes"?>
+<Factura xmlns="http://www.w3.org/2001/XMLSchema-instance">
+    <Encabezado>
+        <llavecomprobante>51024</llavecomprobante>
+        <nitemisor>901056862</nitemisor>
+        <codSucursal>901056862</codSucursal>
+        <tiporeceptor>1</tiporeceptor>
+        <tipoDocRec>13</tipoDocRec>
+        <nitreceptor>13515499</nitreceptor>
+        <digitoverificacion></digitoverificacion>
+        <obligacionesfiscalesreceptor>E-99</obligacionesfiscalesreceptor>
+        <tributoreceptor>01</tributoreceptor>
+        <regimenreceptor>48</regimenreceptor>
+        <nombrereceptor> PIMIENTO RUEDA GERMAN ORLANDO</nombrereceptor>
+        <nombrereceptorpersona></nombrereceptorpersona>
+        <segnombrereceptor></segnombrereceptor>
+        <apellidosreceptor></apellidosreceptor>
+        <nombrecomercialreceptor> PIMIENTO RUEDA GERMAN ORLANDO</nombrecomercialreceptor>
+        <paisreceptor>CO</paisreceptor>
+        <codigodepartamento>11</codigodepartamento>
+        <departamentoreceptor>BOGOTÁ</departamentoreceptor>
+        <codigociudadreceptor>11001</codigociudadreceptor>
+        <ciudadreceptor>BOGOTÁ</ciudadreceptor>
+        <codigopostal>11001</codigopostal>
+        <direccionreceptor>TV 23 97 73</direccionreceptor>
+        <telefonoreceptor>SIN TELEFONO</telefonoreceptor>
+        <telefonomovilreceptor>SIN TELEFONO</telefonomovilreceptor>
+        <mailreceptor></mailreceptor>
+        <mailreceptorcontacto></mailreceptorcontacto>
+        <nombrecontactoreceptor></nombrecontactoreceptor>
+        <tipocomprobante>01</tipocomprobante>
+        <noresolucion>18760000001</noresolucion>
+        <prefijo>SETT</prefijo>
+        <folio>51024</folio>
+        <fecha>2020-01-11</fecha>
+        <hora>13:25:08</hora>
+        <xslt>1</xslt>
+        <moneda>COP</moneda>
+        <subtotal>81000.00</subtotal>
+        <metodopago>1</metodopago>
+        <mediopago>ZZZ</mediopago>
+        <fechavencimiento>2020-01-26</fechavencimiento>
+        <terminospago>15</terminospago>
+        <baseimpuesto>81000.00</baseimpuesto>
+        <totalsindescuento>96390.00</totalsindescuento>
+        <totaldescuentos>0.00</totaldescuentos>
+        <totalimpuestos>15390.00</totalimpuestos>
+        <totalimpuestosretenidos>0.00</totalimpuestosretenidos>
+        <total>96390.00</total>
+        <montoletra>NOVENTA Y SEIS MIL TRESCIENTOS NOVENTA Pesos MCTE </montoletra>
+		<textolibre></textolibre>
+		<ncidfact></ncidfact>
+		<nccod></nccod>
+		<nciddoc></nciddoc>
+		<ncuuid></ncuuid>
+		<ncfecha></ncfecha>
+		<ndidfact></ndidfact>
+		<ndcod></ndcod>
+		<ndiddoc></ndiddoc>
+		<nduuid></nduuid>
+		<ndfecha></ndfecha>
+		<extra1></extra1>
+		<extra2></extra2>
+		<extra3></extra3>
+		<extra4></extra4>
+		<extra5></extra5>
+		<extra6></extra6>
+		<extra7></extra7>
+		<extra8></extra8>
+		<extra9></extra9>
+		<extra10></extra10>
+		<extra11></extra11>
+		<extra12></extra12>
+		<extra13></extra13>
+		<extra14></extra14>
+		<extra15></extra15>
+		<extra16></extra16>
+		<extra17></extra17>
+		<extra18></extra18>
+		<idContrato></idContrato>
+		<tipoContrato></tipoContrato>
+		<numMatricula></numMatricula>
+		<numMatriculaMan></numMatriculaMan>
+		<nombreMandatario></nombreMandatario>
+		<nitDV></nitDV>
+		<tiposResponsabilidades></tiposResponsabilidades>
+		<numeroConformidad></numeroConformidad>
+		<numeroPedido></numeroPedido>
+		<ordenCompra></ordenCompra>
+		<hojaEntrada></hojaEntrada>
+		<centroOperacion></centroOperacion>
+    </Encabezado>
+<Detalle>
+  <Det>
+			<llaveComprobante>51024</llaveComprobante>
+			<idConcepto>1</idConcepto>
+			<cantidad>30.00</cantidad>
+			<unidadmedida>94</unidadmedida>
+			<impuestolinea>6840.00</impuestolinea>
+			<tasa>19.00</tasa>
+			<tipo>01</tipo>
+			<baseimpuestos>36000.00</baseimpuestos>
+			<subpartidaarancelaria></subpartidaarancelaria>
+			<identificacionproductos>52</identificacionproductos>
+			<descripcion>ALIANZA FIDUCIARIA S.A</descripcion>
+			<precioUnitario>1200.00</precioUnitario>
+			<importe>36000.00</importe>
+			<adicionalInfo></adicionalInfo>
+			<extra1></extra1>
+			<extra2></extra2>
+			<extra3></extra3>
+			<extra4></extra4>
+			<extra5></extra5>
+			<extra6></extra6>
+			<extra7></extra7>
+			<extra8></extra8>
+			<extra9></extra9>
+			<extra10></extra10>
+			<extra11></extra11>
+			<extra12></extra12>
+			<extra13></extra13>
+			<extra14></extra14>
+			<extra15></extra15>
+			<extra16></extra16>
+			<extra17></extra17>
+			<extra18></extra18>
+  </Det>
+</Detalle>
+<Impuestos>
+  <Imp>
+			<llaveComprobante>51024</llaveComprobante>
+			<idImpuesto>1</idImpuesto>
+			<baseimpuestos>36000.00</baseimpuestos>
+			<tasa>19.00</tasa>
+			<tipoImpuesto>01</tipoImpuesto>
+			<importe>6840.00</importe>
+  </Imp>
+</Impuestos>
+<Detalle>
+  <Det>
+			<llaveComprobante>51024</llaveComprobante>
+			<idConcepto>2</idConcepto>
+			<cantidad>30.00</cantidad>
+			<unidadmedida>94</unidadmedida>
+			<impuestolinea>8550.00</impuestolinea>
+			<tasa>19.00</tasa>
+			<tipo>01</tipo>
+			<baseimpuestos>45000.00</baseimpuestos>
+			<subpartidaarancelaria></subpartidaarancelaria>
+			<identificacionproductos>30</identificacionproductos>
+			<descripcion>CARBONES DEL CERREJON LIMITED (ALBANIA)</descripcion>
+			<precioUnitario>1500.00</precioUnitario>
+			<importe>45000.00</importe>
+			<adicionalInfo></adicionalInfo>
+			<extra1></extra1>
+			<extra2></extra2>
+			<extra3></extra3>
+			<extra4></extra4>
+			<extra5></extra5>
+			<extra6></extra6>
+			<extra7></extra7>
+			<extra8></extra8>
+			<extra9></extra9>
+			<extra10></extra10>
+			<extra11></extra11>
+			<extra12></extra12>
+			<extra13></extra13>
+			<extra14></extra14>
+			<extra15></extra15>
+			<extra16></extra16>
+			<extra17></extra17>
+			<extra18></extra18>
+  </Det>
+</Detalle>
+<Impuestos>
+  <Imp>
+			<llaveComprobante>51024</llaveComprobante>
+			<idImpuesto>1</idImpuesto>
+			<baseimpuestos>45000.00</baseimpuestos>
+			<tasa>19.00</tasa>
+			<tipoImpuesto>01</tipoImpuesto>
+			<importe>8550.00</importe>
+  </Imp>
+</Impuestos>
+</Factura>

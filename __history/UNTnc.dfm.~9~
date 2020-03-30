@@ -1,0 +1,744 @@
+object FrmNC: TFrmNC
+  Left = 0
+  Top = 0
+  Width = 674
+  Height = 529
+  TabOrder = 0
+  object dxTileControl1: TdxTileControl
+    Left = 0
+    Top = 0
+    Width = 674
+    Height = 529
+    TabOrder = 0
+    ExplicitWidth = 317
+    ExplicitHeight = 240
+  end
+  object RadioGroup: TcxRadioGroup
+    Left = 3
+    Top = 24
+    Caption = 'RadioGroup'
+    Properties.Items = <
+      item
+        Caption = 
+          'Devoluci'#243'n de parte de los bienes; no aceptaci'#243'n de partes del s' +
+          'ervicio'
+        Tag = 1
+      end
+      item
+        Caption = 'Anulaci'#243'n de factura electr'#243'nica'
+        Tag = 2
+      end
+      item
+        Caption = 'Rebaja total aplicada'
+        Tag = 3
+      end
+      item
+        Caption = 'Descuento total aplicado'
+        Tag = 4
+      end
+      item
+        Caption = 'Rescisi'#243'n: nulidad por falta de requisitos'
+        Tag = 5
+      end
+      item
+        Caption = 'Otros'
+        Tag = 6
+      end>
+    TabOrder = 1
+    Height = 282
+    Width = 379
+  end
+  object cxLabel1: TcxLabel
+    Left = 424
+    Top = 25
+    Caption = 'DOCUMENTO'
+  end
+  object TxtDocumento: TcxTextEdit
+    Left = 498
+    Top = 24
+    TabOrder = 3
+    Width = 121
+  end
+  object cxLabel2: TcxLabel
+    Left = 424
+    Top = 105
+    Caption = 'usuario'
+    Visible = False
+  end
+  object TxtUsuario: TcxTextEdit
+    Left = 496
+    Top = 104
+    TabOrder = 5
+    Visible = False
+    Width = 121
+  end
+  object cxLabel3: TcxLabel
+    Left = 424
+    Top = 143
+    Caption = 'clave'
+    Visible = False
+  end
+  object TxtClave: TcxTextEdit
+    Left = 496
+    Top = 138
+    TabOrder = 7
+    Visible = False
+    Width = 121
+  end
+  object cxLabel4: TcxLabel
+    Left = 424
+    Top = 166
+    Caption = 'url validacion'
+    Visible = False
+  end
+  object TxtUrlVal: TcxTextEdit
+    Left = 496
+    Top = 165
+    TabOrder = 9
+    Visible = False
+    Width = 121
+  end
+  object cxLabel5: TcxLabel
+    Left = 424
+    Top = 193
+    Caption = 'url xml'
+    Visible = False
+  end
+  object TxtUrlXML: TcxTextEdit
+    Left = 496
+    Top = 192
+    TabOrder = 11
+    Visible = False
+    Width = 121
+  end
+  object cxButton1: TcxButton
+    Left = 498
+    Top = 281
+    Width = 75
+    Height = 25
+    Caption = 'cxButton1'
+    TabOrder = 12
+    OnClick = cxButton1Click
+  end
+  object QryMaestroFacturas: TpFIBDataSet
+    SelectSQL.Strings = (
+      'select substring'
+      '      (f.documento from 5 for 12)as folio,'
+      '       '#39'99999999'#39' as nitemisor,'
+      '       1 as codigosucursal,'
+      '       iif(c.naturaleza=0, 2,1) as tiporeceptor,'
+      '       CASE  c.clase'
+      '         WHEN '#39'A'#39' THEN 1'
+      '         WHEN '#39'C'#39' THEN 13'
+      '         WHEN '#39'D'#39' THEN 42'
+      '         WHEN '#39'E'#39' THEN 21'
+      '         WHEN '#39'I'#39' THEN 50'
+      '         WHEN '#39'P'#39' THEN 41'
+      '         WHEN '#39'R'#39' THEN 11'
+      '         WHEN '#39'T'#39' THEN 12'
+      '         WHEN '#39'X'#39' THEN 22'
+      '       end as tipoDocRec,'
+      '       trim(c.identidad) as nitreceptor,'
+      '       c.verificacion as digitoverificacion,'
+      '       CASE coalesce(c.libre1,'#39#39')'
+      '         when '#39#39' then '#39'E-99'#39
+      '         else c.libre1'
+      '       end as obligacionesfiscalesreceptor,'
+      '       CASE coalesce(c.libre2,'#39#39')'
+      '          when '#39#39' then '#39'01'#39
+      '          else c.libre2'
+      '       end as tributoreceptor,'
+      '       CASE coalesce(c.regimen,'#39#39')'
+      '          when '#39'C'#39'  then '#39'48'#39
+      '          WHEN '#39'G'#39' THEN  '#39'48'#39
+      '          else 49'
+      '       end as regimenreceptor,'
+      ''
+      '       c.nombre as nombrereceptor,'
+      '       t.nombre1 as nombrereceptorpersona,'
+      '       t.nombre2 as segnombrereceptor,'
+      ''
+      ''
+      '       t.apellido1 as apellidosreceptor,'
+      '       t.apellido2 as apellidosreceptor,'
+      '       iif(cd.cod_pais=169,'#39'CO'#39','#39#39') as paisreceptor,'
+      '       cd.codigo_departamento as codigodepartamento,'
+      ''
+      '       cd.codigo_departamento as nombredpto,'
+      '      '
+      '       c.ciudad as codigociudadreceptor,'
+      '       cd.nombre as ciudadreceptor,'
+      '       iif(c.apartado='#39#39',110111,1) as codigopostal,'
+      '       c.direccion as direccionreceptor,'
+      ''
+      ''
+      ''
+      '       c.telefonos as telefonoreceptor,'
+      '       CASE coalesce(c.telefonos_contacto,'#39#39')'
+      '         when '#39#39' then c.telefonos'
+      '         else c.telefonos'
+      '       end as telefonomovilreceptor,'
+      '       CASE c.email'
+      '         when '#39#39' then '#39#39
+      '         else c.email'
+      '       end as mailreceptor,'
+      '       CASE c.email'
+      '         when '#39#39' then '#39#39
+      '         else c.email'
+      '       end as mailreceptorcontacto,'
+      '       CASE coalesce(c.nombre_contacto,'#39#39')'
+      '         when '#39#39' then '#39#39
+      '         else c.nombre_contacto'
+      '       end as nombrecontactoreceptor,'
+      '       '#39'VALID'#39' as tipocomprobante,'
+      '       '#39'VALID'#39' as noresolucion,'
+      '       '#39'VALID'#39' as prefijo,'
+      '       hedatetostr(f.fecha,'#39'yyyy-mm-dd'#39') as fecha,'
+      '       '#39'HORA POR DELPHI'#39' as hora,'
+      '       '#39'1'#39' as xslt,'
+      '       '#39'COP'#39' as moneda,'
+      
+        '       (f.art_total_bruto+f.ser_total_bruto)-(f.art_total_descue' +
+        'nto+f.ser_total_descuento) as subtotal,'
+      '       case f.vr_credito'
+      '         when 0 then  '#39'1'#39
+      '         else '#39'2'#39
+      '       end as metodopago,'
+      '       case f.vr_credito'
+      '         when  0 then '#39'10'#39
+      '         else '#39'ZZZ'#39
+      '       end as mediopago ,'
+      
+        '       hedatetostr(f.fecha_vence,'#39'yyyy-mm-dd'#39') as fechavencimien' +
+        'to,'
+      '       (f.fecha_vence-f.fecha) as terminospago,'
+      
+        '       (f.art_total_iva_gravado+f.ser_total_iva_gravado) as base' +
+        'impuesto,'
+      
+        '       (f.art_total_bruto+f.ser_total_bruto)-(f.art_total_descue' +
+        'nto+f.ser_total_descuento)+(f.art_total_iva+f.ser_total_iva) as ' +
+        'totalsindescuento,'
+      
+        '       (f.art_total_iva+f.ser_total_iva+f.art_total_consumo+f.se' +
+        'r_total_consumo) as totalimpuestos,'
+      
+        '       (f.total_reteica+f.total_retefuente+f.total_reteiva+f.tot' +
+        'al_retehortif+f.total_bolsaagro) as totalimpuestosretenidos,'
+      
+        '       (f.art_total_bruto+f.ser_total_bruto)-(f.art_total_descue' +
+        'nto+f.ser_total_descuento)+(f.art_total_iva+f.ser_total_iva+f.ar' +
+        't_total_consumo+f.ser_total_consumo)-(f.total_reteica+f.total_re' +
+        'tefuente+f.total_reteiva+f.total_retehortif+f.total_bolsaagro) a' +
+        's total,'
+      '       '#39'MONTO DEFINIDO DELPHI'#39' as montoletra,'
+      '       '#39'FACTURA ELECTRONICA'#39' as textolibre,'
+      '       '#39'PREFIJO DE LA NOTA CREDITO'#39' as ncidfact,'
+      '       '#39'CODIGO DE LA NOTA CREDITO'#39' as nccod,'
+      ''
+      ''
+      ''
+      'substring(f.documento from 5 for 12) as llavecomprobante,'
+      '       fa.consecutivo as idConcepto,'
+      '       fa.cantidad as cantidad,'
+      '       '#39'UNIDAD DEFINICA AYT'#39' as unidadmedida,'
+      '       fa.vr_iva as impuestolinea,'
+      '       fa.tf_iva as tasa,'
+      '       iif(fa.vr_iva = 0, '#39'0'#39','#39'01'#39') as tipo,'
+      '       fa.vr_total as baseimpuestos,'
+      '       '#39#39' as subpartidaarancelaria,'
+      
+        '       '#39'CODIGO INTERNO DE CADA PRODUCTO'#39' as identificacionproduc' +
+        'tos,'
+      '       fa.texto as descripcion,'
+      '       fa.vr_unitario as precioUnitario,'
+      '       (fa.vr_total-fa.vr_descuento) as importedetalle,'
+      ''
+      'substring(f.documento from 5 for 12) as llavecomprobante,'
+      '       fa.consecutivo as idImpuesto,'
+      '       (f.art_total_iva+f.ser_total_iva) as importeimpuesto,'
+      '       fa.tf_iva as tasa,'
+      '       iif(fa.vr_iva = 0, '#39'0'#39','#39'01'#39') as tipoImpuesto'
+      ''
+      ''
+      ''
+      ''
+      ''
+      ''
+      ''
+      'from famaxxxx f'
+      'inner join ccma2019 c on(c.codigo = f.codigo_tercero)'
+      'inner join temaxxxx t on(t.identidad = c.identidad)'
+      'inner join ciudxxxx cd on(cd.codigo = c.ciudad)'
+      'inner join fatrxxxx fa on(fa.documento = f.documento) '
+      'where f.documento = :pDocumento')
+    Transaction = DMconn.TrParticular
+    Database = DMconn.DbParticular
+    Left = 128
+    Top = 320
+    object QryMaestroFacturasFOLIO: TFIBStringField
+      FieldName = 'FOLIO'
+      Size = 12
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNITEMISOR: TFIBStringField
+      FieldName = 'NITEMISOR'
+      Size = 8
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasCODIGOSUCURSAL: TFIBIntegerField
+      FieldName = 'CODIGOSUCURSAL'
+    end
+    object QryMaestroFacturasTIPORECEPTOR: TFIBIntegerField
+      FieldName = 'TIPORECEPTOR'
+    end
+    object QryMaestroFacturasTIPODOCREC: TFIBIntegerField
+      FieldName = 'TIPODOCREC'
+    end
+    object QryMaestroFacturasNITRECEPTOR: TFIBStringField
+      FieldName = 'NITRECEPTOR'
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasDIGITOVERIFICACION: TFIBStringField
+      FieldName = 'DIGITOVERIFICACION'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasOBLIGACIONESFISCALESRECEPTOR: TFIBStringField
+      FieldName = 'OBLIGACIONESFISCALESRECEPTOR'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasTRIBUTORECEPTOR: TFIBStringField
+      FieldName = 'TRIBUTORECEPTOR'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasREGIMENRECEPTOR: TFIBStringField
+      FieldName = 'REGIMENRECEPTOR'
+      Size = 11
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNOMBRERECEPTOR: TFIBStringField
+      FieldName = 'NOMBRERECEPTOR'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNOMBRERECEPTORPERSONA: TFIBStringField
+      FieldName = 'NOMBRERECEPTORPERSONA'
+      Size = 30
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasSEGNOMBRERECEPTOR: TFIBStringField
+      FieldName = 'SEGNOMBRERECEPTOR'
+      Size = 30
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasAPELLIDOSRECEPTOR: TFIBStringField
+      FieldName = 'APELLIDOSRECEPTOR'
+      Size = 30
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasAPELLIDOSRECEPTOR1: TFIBStringField
+      FieldName = 'APELLIDOSRECEPTOR1'
+      Size = 30
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasPAISRECEPTOR: TFIBStringField
+      FieldName = 'PAISRECEPTOR'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasCODIGODEPARTAMENTO: TFIBStringField
+      FieldName = 'CODIGODEPARTAMENTO'
+      Size = 5
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNOMBREDPTO: TFIBStringField
+      FieldName = 'NOMBREDPTO'
+      Size = 5
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasCODIGOCIUDADRECEPTOR: TFIBStringField
+      FieldName = 'CODIGOCIUDADRECEPTOR'
+      Size = 5
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasCIUDADRECEPTOR: TFIBStringField
+      FieldName = 'CIUDADRECEPTOR'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasCODIGOPOSTAL: TFIBIntegerField
+      FieldName = 'CODIGOPOSTAL'
+    end
+    object QryMaestroFacturasDIRECCIONRECEPTOR: TFIBStringField
+      FieldName = 'DIRECCIONRECEPTOR'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasTELEFONORECEPTOR: TFIBStringField
+      FieldName = 'TELEFONORECEPTOR'
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasTELEFONOMOVILRECEPTOR: TFIBStringField
+      FieldName = 'TELEFONOMOVILRECEPTOR'
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasMAILRECEPTOR: TFIBStringField
+      FieldName = 'MAILRECEPTOR'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasMAILRECEPTORCONTACTO: TFIBStringField
+      FieldName = 'MAILRECEPTORCONTACTO'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNOMBRECONTACTORECEPTOR: TFIBStringField
+      FieldName = 'NOMBRECONTACTORECEPTOR'
+      Size = 100
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasTIPOCOMPROBANTE: TFIBStringField
+      FieldName = 'TIPOCOMPROBANTE'
+      Size = 5
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNORESOLUCION: TFIBStringField
+      FieldName = 'NORESOLUCION'
+      Size = 5
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasPREFIJO: TFIBStringField
+      FieldName = 'PREFIJO'
+      Size = 5
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasFECHA: TFIBStringField
+      FieldName = 'FECHA'
+      Size = 80
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasHORA: TFIBStringField
+      FieldName = 'HORA'
+      Size = 15
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasXSLT: TFIBStringField
+      FieldName = 'XSLT'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasMONEDA: TFIBStringField
+      FieldName = 'MONEDA'
+      Size = 3
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasSUBTOTAL: TFIBFloatField
+      FieldName = 'SUBTOTAL'
+    end
+    object QryMaestroFacturasMETODOPAGO: TFIBStringField
+      FieldName = 'METODOPAGO'
+      Size = 1
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasMEDIOPAGO: TFIBStringField
+      FieldName = 'MEDIOPAGO'
+      Size = 3
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasFECHAVENCIMIENTO: TFIBStringField
+      FieldName = 'FECHAVENCIMIENTO'
+      Size = 80
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasTERMINOSPAGO: TFIBIntegerField
+      FieldName = 'TERMINOSPAGO'
+    end
+    object QryMaestroFacturasBASEIMPUESTO: TFIBFloatField
+      FieldName = 'BASEIMPUESTO'
+    end
+    object QryMaestroFacturasTOTALSINDESCUENTO: TFIBFloatField
+      FieldName = 'TOTALSINDESCUENTO'
+    end
+    object QryMaestroFacturasTOTALIMPUESTOS: TFIBFloatField
+      FieldName = 'TOTALIMPUESTOS'
+    end
+    object QryMaestroFacturasTOTALIMPUESTOSRETENIDOS: TFIBFloatField
+      FieldName = 'TOTALIMPUESTOSRETENIDOS'
+    end
+    object QryMaestroFacturasTOTAL: TFIBFloatField
+      FieldName = 'TOTAL'
+    end
+    object QryMaestroFacturasMONTOLETRA: TFIBStringField
+      FieldName = 'MONTOLETRA'
+      Size = 21
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasTEXTOLIBRE: TFIBStringField
+      FieldName = 'TEXTOLIBRE'
+      Size = 19
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNCIDFACT: TFIBStringField
+      FieldName = 'NCIDFACT'
+      Size = 26
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasNCCOD: TFIBStringField
+      FieldName = 'NCCOD'
+      Size = 25
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasLLAVECOMPROBANTE: TFIBStringField
+      FieldName = 'LLAVECOMPROBANTE'
+      Size = 12
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasIDCONCEPTO: TFIBIntegerField
+      FieldName = 'IDCONCEPTO'
+    end
+    object QryMaestroFacturasCANTIDAD: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'CANTIDAD'
+      DisplayFormat = '#,##0.000000'
+      EditFormat = '0.000000'
+    end
+    object QryMaestroFacturasUNIDADMEDIDA: TFIBStringField
+      FieldName = 'UNIDADMEDIDA'
+      Size = 19
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasIMPUESTOLINEA: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'IMPUESTOLINEA'
+      DisplayFormat = '#,##0.00'
+      EditFormat = '0.00'
+    end
+    object QryMaestroFacturasTASA: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'TASA'
+      DisplayFormat = '#,##0.000000'
+      EditFormat = '0.000000'
+    end
+    object QryMaestroFacturasTIPO: TFIBStringField
+      FieldName = 'TIPO'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasBASEIMPUESTOS: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'BASEIMPUESTOS'
+      DisplayFormat = '#,##0.00'
+      EditFormat = '0.00'
+    end
+    object QryMaestroFacturasSUBPARTIDAARANCELARIA: TFIBStringField
+      FieldName = 'SUBPARTIDAARANCELARIA'
+      Size = 0
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasIDENTIFICACIONPRODUCTOS: TFIBStringField
+      FieldName = 'IDENTIFICACIONPRODUCTOS'
+      Size = 31
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasDESCRIPCION: TFIBStringField
+      FieldName = 'DESCRIPCION'
+      Size = 60
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasPRECIOUNITARIO: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'PRECIOUNITARIO'
+      DisplayFormat = '#,##0.000000'
+      EditFormat = '0.000000'
+    end
+    object QryMaestroFacturasIMPORTEDETALLE: TFIBFloatField
+      FieldName = 'IMPORTEDETALLE'
+    end
+    object QryMaestroFacturasLLAVECOMPROBANTE1: TFIBStringField
+      FieldName = 'LLAVECOMPROBANTE1'
+      Size = 12
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+    object QryMaestroFacturasIDIMPUESTO: TFIBIntegerField
+      FieldName = 'IDIMPUESTO'
+    end
+    object QryMaestroFacturasIMPORTEIMPUESTO: TFIBFloatField
+      FieldName = 'IMPORTEIMPUESTO'
+    end
+    object QryMaestroFacturasTASA1: TFIBFloatField
+      DefaultExpression = '0'
+      FieldName = 'TASA1'
+      DisplayFormat = '#,##0.000000'
+      EditFormat = '0.000000'
+    end
+    object QryMaestroFacturasTIPOIMPUESTO: TFIBStringField
+      FieldName = 'TIPOIMPUESTO'
+      Size = 2
+      Transliterate = False
+      EmptyStrToNull = True
+    end
+  end
+  object QryDatosEmpresa: TSimpleDataSet
+    Aggregates = <>
+    DataSet.CommandText = 'select * from datosempresa'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 208
+    Top = 320
+    object IntegerField1: TIntegerField
+      FieldName = 'nit'
+      Required = True
+    end
+    object QryDatosEmpresanombreempresa: TStringField
+      FieldName = 'nombreempresa'
+      Size = 100
+    end
+    object QryDatosEmpresadireccion: TStringField
+      FieldName = 'direccion'
+      Size = 100
+    end
+    object QryDatosEmpresatelefonos: TStringField
+      FieldName = 'telefonos'
+      Size = 60
+    end
+    object QryDatosEmpresaciudad: TStringField
+      FieldName = 'ciudad'
+      Size = 6
+    end
+    object QryDatosEmpresacorreo: TStringField
+      FieldName = 'correo'
+      Size = 150
+    end
+    object StringField1: TStringField
+      FieldName = 'usuario'
+      Size = 45
+    end
+    object StringField2: TStringField
+      FieldName = 'password'
+      Size = 45
+    end
+    object StringField3: TStringField
+      FieldName = 'resolucion'
+      Size = 45
+    end
+    object StringField4: TStringField
+      FieldName = 'prefijo'
+      Size = 45
+    end
+    object StringField5: TStringField
+      FieldName = 'rangoDesde'
+      Size = 45
+    end
+    object StringField6: TStringField
+      FieldName = 'rangoHasta'
+      Size = 45
+    end
+    object StringField7: TStringField
+      FieldName = 'vigDesde'
+      Size = 45
+    end
+    object StringField8: TStringField
+      FieldName = 'vigHasta'
+      Size = 45
+    end
+    object QryDatosEmpresaurltoken: TStringField
+      FieldName = 'urltoken'
+      Size = 50
+    end
+    object QryDatosEmpresaurlfactura: TStringField
+      FieldName = 'urlfactura'
+      Size = 50
+    end
+    object QryDatosEmpresacodigohelisa: TIntegerField
+      FieldName = 'codigohelisa'
+    end
+    object QryDatosEmpresaurlpdf: TStringField
+      FieldName = 'urlpdf'
+      Size = 50
+    end
+  end
+  object QryActualizaEstado: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pDocumento'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pXml'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pCufe'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pEstado'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pError'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      
+        'insert into detatransaccion(iddetaTransaccion,xml,cufe,estado,er' +
+        'ror)values(:pDocumento,:pXml,:pCufe,:pEstado,:pError)')
+    SQLConnection = DMconn.DBAYT
+    Left = 168
+    Top = 408
+  end
+end

@@ -1,0 +1,223 @@
+object Frmbasededatos: TFrmbasededatos
+  Left = 0
+  Top = 0
+  Caption = 'Base de Datos'
+  ClientHeight = 391
+  ClientWidth = 590
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object dxTileControl1: TdxTileControl
+    Left = 0
+    Top = 0
+    Width = 590
+    Height = 391
+    TabOrder = 0
+  end
+  object BtnActualizar: TButton
+    Left = 189
+    Top = 335
+    Width = 137
+    Height = 37
+    Caption = 'Actualizar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Roboto Cn'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    OnClick = BtnActualizarClick
+  end
+  object cxDBTextEdit4: TcxDBTextEdit
+    Left = 189
+    Top = 283
+    DataBinding.DataField = 'HostName'
+    DataBinding.DataSource = DtsDBName
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 2
+    Width = 137
+  end
+  object cxLabel5: TcxLabel
+    Left = 85
+    Top = 284
+    Caption = 'Host Name'
+    ParentColor = False
+    ParentFont = False
+    Style.BorderColor = clWhite
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = [fsBold]
+    Style.IsFontAssigned = True
+    Properties.ShadowedColor = clWhite
+  end
+  object cxDBTextEdit3: TcxDBTextEdit
+    Left = 189
+    Top = 219
+    DataBinding.DataField = 'PasswordPart'
+    DataBinding.DataSource = DtsDBName
+    ParentFont = False
+    Properties.EchoMode = eemPassword
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 4
+    Width = 361
+  end
+  object cxLabel4: TcxLabel
+    Left = 85
+    Top = 220
+    Caption = 'Password Part'
+    ParentColor = False
+    ParentFont = False
+    Style.BorderColor = clWhite
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = [fsBold]
+    Style.IsFontAssigned = True
+    Properties.ShadowedColor = clWhite
+  end
+  object cxDBTextEdit2: TcxDBTextEdit
+    Left = 189
+    Top = 155
+    DataBinding.DataField = 'DBNameParticular'
+    DataBinding.DataSource = DtsDBName
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 6
+    Width = 361
+  end
+  object cxLabel3: TcxLabel
+    Left = 85
+    Top = 156
+    Caption = 'Base de Datos Part'
+    ParentColor = False
+    ParentFont = False
+    Style.BorderColor = clWhite
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = [fsBold]
+    Style.IsFontAssigned = True
+    Properties.ShadowedColor = clWhite
+  end
+  object cxDBTextEdit1: TcxDBTextEdit
+    Left = 189
+    Top = 91
+    DataBinding.DataField = 'PasswordGlobal'
+    DataBinding.DataSource = DtsDBName
+    ParentFont = False
+    Properties.EchoMode = eemPassword
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 8
+    Width = 361
+  end
+  object cxLabel2: TcxLabel
+    Left = 85
+    Top = 92
+    Caption = 'Password GB'
+    ParentColor = False
+    ParentFont = False
+    Style.BorderColor = clWhite
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = [fsBold]
+    Style.IsFontAssigned = True
+    Properties.ShadowedColor = clWhite
+  end
+  object TxtDBNameGlobal: TcxDBTextEdit
+    Left = 189
+    Top = 35
+    DataBinding.DataField = 'DBNameGlobal'
+    DataBinding.DataSource = DtsDBName
+    ParentFont = False
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = []
+    Style.IsFontAssigned = True
+    TabOrder = 10
+    Width = 361
+  end
+  object cxLabel1: TcxLabel
+    Left = 85
+    Top = 36
+    Caption = 'Base de Datos GB'
+    ParentColor = False
+    ParentFont = False
+    Style.BorderColor = clWhite
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = [fsBold]
+    Style.IsFontAssigned = True
+    Properties.ShadowedColor = clWhite
+  end
+  object cxLabel6: TcxLabel
+    Left = 349
+    Top = 284
+    Caption = 'BD'
+    ParentColor = False
+    ParentFont = False
+    Style.BorderColor = clWhite
+    Style.Color = clWhite
+    Style.Font.Charset = DEFAULT_CHARSET
+    Style.Font.Color = clWindowText
+    Style.Font.Height = -13
+    Style.Font.Name = 'Roboto Cn'
+    Style.Font.Style = [fsBold]
+    Style.IsFontAssigned = True
+    Properties.ShadowedColor = clWhite
+  end
+  object TxtDB: TcxDBTextEdit
+    Left = 408
+    Top = 284
+    DataBinding.DataSource = DtsDBName
+    TabOrder = 13
+    Width = 121
+  end
+  object DtsDBName: TDataSource
+    DataSet = DMconn.CdtsDBName
+    Left = 24
+    Top = 16
+  end
+end

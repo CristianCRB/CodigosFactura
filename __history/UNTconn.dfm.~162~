@@ -1,0 +1,498 @@
+object DMconn: TDMconn
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 284
+  Width = 1021
+  object DtsDatosEmpresaAYT: TDataSource
+    DataSet = QryDatosEmpresa
+    Left = 328
+    Top = 144
+  end
+  object DBGlobal: TpFIBDatabase
+    DBParams.Strings = (
+      'user_name=HELISAADMON'
+      'lc_ctype=ISO8859_1'
+      'password=U8JKR@fC')
+    SQLDialect = 1
+    Timeout = 0
+    LibraryName = 'fbclient.dll'
+    WaitForRestoreConnect = 0
+    Left = 40
+    Top = 16
+  end
+  object QryEmpresaGeneral: TpFIBDataSet
+    SelectSQL.Strings = (
+      
+        'SELECT CODIGO,NOMBRE,IDENTIDAD,verificacion, direccion,codigo_ci' +
+        'udad,email,telefono1||'#39' '#39'||telefono2 telefonos FROM DIRECTOR')
+    Transaction = TrGlobal
+    Database = DBGlobal
+    Left = 48
+    Top = 136
+  end
+  object TrGlobal: TpFIBTransaction
+    DefaultDatabase = DBGlobal
+    Left = 40
+    Top = 72
+  end
+  object DBAYT: TSQLConnection
+    ConnectionName = 'MySQLConnection'
+    DriverName = 'MySQL'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXMySQL'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver210.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=21.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDr' +
+        'iver210.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFact' +
+        'ory,Borland.Data.DbxMySQLDriver,Version=21.0.0.0,Culture=neutral' +
+        ',PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverMYSQL'
+      'LibraryName=dbxmys.dll'
+      'LibraryNameOsx=libsqlmys.dylib'
+      'VendorLib=libmysql.dll'
+      'VendorLibWin64=libmysql.dll'
+      'VendorLibOsx=libmysqlclient.dylib'
+      'MaxBlobSize=-1'
+      'DriverName=MySQL'
+      'Database=aytdb'
+      'User_Name=root'
+      'ServerCharSet='
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'Compressed=False'
+      'Encrypted=False'
+      'ConnectTimeout=60'
+      'Password=N@cO6z6'
+      'HostName=192.168.56.1')
+    Connected = True
+    Left = 328
+    Top = 16
+  end
+  object QryDatosEmpresa: TSimpleDataSet
+    Aggregates = <>
+    Connection = DBAYT
+    DataSet.CommandText = 'select * from datosempresa'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 328
+    Top = 80
+    object QryDatosEmpresanit: TIntegerField
+      FieldName = 'nit'
+      Required = True
+    end
+    object QryDatosEmpresalicencia: TStringField
+      FieldName = 'licencia'
+      Required = True
+      Size = 10
+    end
+    object QryDatosEmpresanombreempresa: TStringField
+      FieldName = 'nombreempresa'
+      Size = 100
+    end
+    object QryDatosEmpresadireccion: TStringField
+      FieldName = 'direccion'
+      Size = 100
+    end
+    object QryDatosEmpresatelefonos: TStringField
+      FieldName = 'telefonos'
+      Size = 60
+    end
+    object QryDatosEmpresaciudad: TStringField
+      FieldName = 'ciudad'
+      Size = 6
+    end
+    object QryDatosEmpresacorreo: TStringField
+      FieldName = 'correo'
+      Size = 150
+    end
+    object QryDatosEmpresausuario: TStringField
+      FieldName = 'usuario'
+      Size = 45
+    end
+    object QryDatosEmpresapassword: TStringField
+      FieldName = 'password'
+      Size = 45
+    end
+    object QryDatosEmpresaresolucion: TStringField
+      FieldName = 'resolucion'
+      Size = 45
+    end
+    object QryDatosEmpresaprefijo: TStringField
+      FieldName = 'prefijo'
+      Size = 45
+    end
+    object QryDatosEmpresarangoDesde: TStringField
+      FieldName = 'rangoDesde'
+      Size = 45
+    end
+    object QryDatosEmpresarangoHasta: TStringField
+      FieldName = 'rangoHasta'
+      Size = 45
+    end
+    object QryDatosEmpresavigDesde: TStringField
+      FieldName = 'vigDesde'
+      Size = 45
+    end
+    object QryDatosEmpresavigHasta: TStringField
+      FieldName = 'vigHasta'
+      Size = 45
+    end
+    object QryDatosEmpresaurltoken: TStringField
+      FieldName = 'urltoken'
+      Size = 50
+    end
+    object QryDatosEmpresaurlfactura: TStringField
+      FieldName = 'urlfactura'
+      Size = 50
+    end
+    object QryDatosEmpresaurlpdf: TStringField
+      FieldName = 'urlpdf'
+      Size = 50
+    end
+    object QryDatosEmpresacodigohelisa: TIntegerField
+      FieldName = 'codigohelisa'
+    end
+  end
+  object QryComparacion: TpFIBQuery
+    Transaction = TrGlobal
+    Database = DBGlobal
+    Left = 47
+    Top = 200
+  end
+  object DbParticular: TpFIBDatabase
+    DBParams.Strings = (
+      'user_name=HELISAADMON'
+      'lc_ctype=ISO8859_1'
+      'sql_role_name='
+      'password=U8JKR@fC')
+    DefaultTransaction = TrParticular
+    SQLDialect = 1
+    Timeout = 0
+    LibraryName = 'fbclient.dll'
+    WaitForRestoreConnect = 0
+    Left = 120
+    Top = 16
+  end
+  object TrParticular: TpFIBTransaction
+    DefaultDatabase = DbParticular
+    Left = 120
+    Top = 72
+  end
+  object QryParticularFac: TpFIBDataSet
+    SelectSQL.Strings = (
+      'select F.DOCUMENTO,'
+      
+        '      iif(F.CODIGO_TERCERO = C.CODIGO, C.NOMBRE, '#39#39#39#39') CODIGO_TE' +
+        'RCERO,'
+      '     (F.ART_TOTAL_BRUTO+F.SER_TOTAL_BRUTO) AS VALORNETO,'
+      '     (F.ART_TOTAL_IVA+F.SER_TOTAL_IVA) AS VALORIVA'
+      'from FAMAXXXX F'
+      'left join CCMA2019 C on(C.CODIGO = F.CODIGO_TERCERO)'
+      'where CLASE_FAC = 1')
+    Transaction = TrParticular
+    Database = DbParticular
+    Left = 120
+    Top = 136
+  end
+  object QryParticularNC: TpFIBDataSet
+    SelectSQL.Strings = (
+      'select'
+      '    F.DOCUMENTO,'
+      '    FA.documento_origen'
+      'from FAMAXXXX F'
+      'inner join FATRXXXX FA on(FA.documento = F.documento)'
+      'where CLASE_FAC = 2')
+    Transaction = TrParticular
+    Database = DbParticular
+    Left = 201
+    Top = 136
+  end
+  object SQLConnection1: TSQLConnection
+    ConnectionName = 'MySQLConnection'
+    DriverName = 'MySQL'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXMySQL'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver210.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=21.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDr' +
+        'iver210.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFact' +
+        'ory,Borland.Data.DbxMySQLDriver,Version=21.0.0.0,Culture=neutral' +
+        ',PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverMYSQL'
+      'LibraryName=dbxmys.dll'
+      'LibraryNameOsx=libsqlmys.dylib'
+      'VendorLib=LIBMYSQL.dll'
+      'VendorLibWin64=libmysql.dll'
+      'VendorLibOsx=libmysqlclient.dylib'
+      'MaxBlobSize=-1'
+      'DriverName=MySQL'
+      'HostName=localhost'
+      'Database=aytdb'
+      'User_Name=root'
+      'ServerCharSet='
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'Compressed=False'
+      'Encrypted=False'
+      'ConnectTimeout=60'
+      'Password=N@cO6z6')
+    Left = 448
+    Top = 65408
+  end
+  object QryDetaTransaccion: TSQLQuery
+    MaxBlobSize = 1
+    Params = <>
+    SQL.Strings = (
+      'select * from detatransaccion')
+    SQLConnection = DBAYT
+    Left = 462
+    Top = 80
+  end
+  object DtsDetaTransaccion: TDataSetProvider
+    DataSet = QryDetaTransaccion
+    Left = 462
+    Top = 144
+  end
+  object CdtsDetaTransaccion: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DtsDetaTransaccion'
+    Left = 462
+    Top = 216
+  end
+  object QryActualizacionDatosEmpresa: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pResolucion'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pPrefijo'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pURLToken'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pURLFactura'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pURLPDF'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pCodigoHelisa'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pNit'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      
+        'update datosempresa set resolucion = :pResolucion, prefijo = :pP' +
+        'refijo, urltoken = :pURLToken, urlfactura = :pURLFactura, urlpdf' +
+        ' = :pURLPDF, codigohelisa = :pCodigoHelisa where nit = :pNit')
+    SQLConnection = DBAYT
+    Left = 328
+    Top = 216
+  end
+  object QryDBName: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from datosconexion')
+    SQLConnection = DBAYT
+    Left = 555
+    Top = 80
+    object QryDBNameDBNameGlobal: TStringField
+      FieldName = 'DBNameGlobal'
+      Size = 100
+    end
+    object QryDBNamePasswordGlobal: TStringField
+      FieldName = 'PasswordGlobal'
+      Size = 100
+    end
+    object QryDBNameDBNameParticular: TStringField
+      FieldName = 'DBNameParticular'
+      Size = 100
+    end
+    object QryDBNamePasswordPart: TStringField
+      FieldName = 'PasswordPart'
+      Size = 100
+    end
+    object QryDBNameHostName: TStringField
+      FieldName = 'HostName'
+      Size = 100
+    end
+    object QryDBNameBaseDatos: TStringField
+      FieldName = 'BaseDatos'
+      Size = 100
+    end
+  end
+  object DtsDBName: TDataSetProvider
+    DataSet = QryDBName
+    Left = 555
+    Top = 144
+  end
+  object CdtsDBName: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DtsDBName'
+    Left = 555
+    Top = 216
+  end
+  object QryActualizaCoor: TSQLQuery
+    MaxBlobSize = -1
+    Params = <
+      item
+        DataType = ftUnknown
+        Name = 'pcy'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pcx'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pqy'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftUnknown
+        Name = 'pqx'
+        ParamType = ptInput
+      end>
+    SQL.Strings = (
+      
+        'update coordenadasfact set cy = :pCy, cx = :pCx, qy = :pQy, qx =' +
+        ' :pQx')
+    SQLConnection = DBAYT
+    Left = 728
+    Top = 216
+  end
+  object QryCoordenadas: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select * from coordenadasfact')
+    SQLConnection = DBAYT
+    Left = 640
+    Top = 80
+  end
+  object DtsCoordenadas: TDataSetProvider
+    DataSet = QryCoordenadas
+    Left = 640
+    Top = 144
+  end
+  object CdtsCoordenadas: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DtsCoordenadas'
+    Left = 640
+    Top = 216
+  end
+  object DbServidor: TSQLConnection
+    DriverName = 'MySQL'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXMySQL'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver210.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=21.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXMySqlMetaDataCommandFactory,DbxMySQLDr' +
+        'iver210.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXMySqlMetaDataCommandFact' +
+        'ory,Borland.Data.DbxMySQLDriver,Version=21.0.0.0,Culture=neutral' +
+        ',PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverMYSQL'
+      'LibraryName=dbxmys.dll'
+      'LibraryNameOsx=libsqlmys.dylib'
+      'VendorLib=libmysql.dll'
+      'VendorLibWin64=libmysql.dll'
+      'VendorLibOsx=libmysqlclient.dylib'
+      'HostName=198.136.50.50'
+      'Database=pollo201_aytdblic'
+      'User_Name=pollo2018'
+      'Password=?MDBjYcg&tzZ'
+      'MaxBlobSize=-1'
+      'LocaleCode=0000'
+      'Compressed=False'
+      'Encrypted=False'
+      'BlobSize=-1'
+      'ErrorResourceFile=')
+    Left = 798
+    Top = 18
+  end
+  object QryServidor: TSimpleDataSet
+    Active = True
+    Aggregates = <>
+    Connection = DbServidor
+    DataSet.CommandText = 'select * from aytdblic'
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    Params = <>
+    Left = 797
+    Top = 80
+    object QryServidornit: TIntegerField
+      FieldName = 'nit'
+      Required = True
+    end
+    object QryServidorlicencia: TStringField
+      FieldName = 'licencia'
+      Required = True
+      Size = 10
+    end
+    object QryServidorestado: TIntegerField
+      FieldName = 'estado'
+      Required = True
+    end
+    object QryServidorrango: TIntegerField
+      FieldName = 'rango'
+      Required = True
+    end
+  end
+end

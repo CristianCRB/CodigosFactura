@@ -1,0 +1,54 @@
+program Fenix;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{$R *.dres}
+
+uses
+  Vcl.Forms,
+  UNTprincipal in 'UNTprincipal.pas' {ForEmpresas},
+  UNTconn in 'UNTconn.pas' {DMconn: TDataModule},
+  UNTmenuprincipal in 'UNTmenuprincipal.pas' {ForMenuPrincipal},
+  UNTfactura in 'UNTfactura.pas' {FrmFactura: TFrame},
+  UntFrmDatosEmpresa in 'UntFrmDatosEmpresa.pas' {FrmDatosEmpresa: TFrame},
+  UNTnotacredito in 'UNTnotacredito.pas' {FrmNotaCredito: TFrame},
+  UNTfacturaexp in 'UNTfacturaexp.pas' {FrmFacturaExp: TFrame},
+  UntSplash in 'UntSplash.pas' {FrmSplash},
+  UNTfacturausada in 'UNTfacturausada.pas' {FrmFacturaUsada: TFrame},
+  UNTagregarfactura in 'UNTagregarfactura.pas' {FrmAgregarFactura},
+  UntSplasEspera in 'UntSplasEspera.pas' {FrmSplasEspera},
+  UNTbasededatos in 'UNTbasededatos.pas' {Frmbasededatos};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TDMconn, DMconn);
+  Application.CreateForm(TForMenuPrincipal, ForMenuPrincipal);
+  Application.CreateForm(TFrmSplash, FrmSplash);
+  Application.CreateForm(TFrmAgregarFactura, FrmAgregarFactura);
+  Application.CreateForm(TFrmSplasEspera, FrmSplasEspera);
+  Application.CreateForm(TFrmbasededatos, Frmbasededatos);
+  Application.Run;
+end.

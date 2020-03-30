@@ -1,0 +1,221 @@
+unit UNTmenuprincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, dxCustomTileControl, cxClasses, dxTileControl, dxSkinsCore, dxSkinBlack, dxSkinBlue, dxSkinBlueprint,
+  dxSkinCaramel, dxSkinCoffee, dxSkinDarkRoom, dxSkinDarkSide,
+  dxSkinDevExpressDarkStyle, dxSkinDevExpressStyle, dxSkinFoggy,
+  dxSkinGlassOceans, dxSkinHighContrast, dxSkiniMaginary, dxSkinLilian,
+  dxSkinLiquidSky, dxSkinLondonLiquidSky, dxSkinMcSkin, dxSkinMetropolis,
+  dxSkinMetropolisDark, dxSkinMoneyTwins, dxSkinOffice2007Black,
+  dxSkinOffice2007Blue, dxSkinOffice2007Green, dxSkinOffice2007Pink,
+  dxSkinOffice2007Silver, dxSkinOffice2010Black, dxSkinOffice2010Blue,
+  dxSkinOffice2010Silver, dxSkinOffice2013DarkGray, dxSkinOffice2013LightGray,
+  dxSkinOffice2013White, dxSkinPumpkin, dxSkinSeven, dxSkinSevenClassic,
+  dxSkinSharp, dxSkinSharpPlus, dxSkinSilver, dxSkinSpringTime, dxSkinStardust,
+  dxSkinSummer2008, dxSkinTheAsphaltWorld, dxSkinsDefaultPainters, dxSkinValentine,
+  dxSkinVS2010, dxSkinWhiteprint, dxSkinXmas2008Blue, UntSplasEspera;
+
+type
+  TForMenuPrincipal = class(TForm)
+    dxTileControl1: TdxTileControl;
+    dxTileControl1ActionBarItem1: TdxTileControlActionBarItem;
+    dxTileControl1Group1: TdxTileControlGroup;
+    dxTileControl1Group2: TdxTileControlGroup;
+    empresa: TdxTileControlItem;
+    facturaFE: TdxTileControlItem;
+    notaCredito: TdxTileControlItem;
+    facturaUsada: TdxTileControlItem;
+    notacreditoUsada: TdxTileControlItem;
+    notaDebito: TdxTileControlItem;
+    facturaFEex: TdxTileControlItem;
+    dxTileControl1Item3: TdxTileControlItem;
+    basededatos: TdxTileControlItem;
+    procedure FormCreate(Sender: TObject);
+    procedure facturaFEClick(Sender: TdxTileControlItem);
+    procedure empresaClick(Sender: TdxTileControlItem);
+    procedure empresaActivateDetail(Sender: TdxTileControlItem);
+    procedure empresaDeactivateDetail(Sender: TdxTileControlItem);
+    procedure dxTileControl1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure notaCreditoClick(Sender: TdxTileControlItem);
+    procedure facturaFEexClick(Sender: TdxTileControlItem);
+    procedure dxTileControl1ActionBarItem1Click(
+      Sender: TdxTileControlActionBarItem);
+    procedure facturaUsadaClick(Sender: TdxTileControlItem);
+    procedure basededatosClick(Sender: TdxTileControlItem);
+    procedure notacreditoUsadaClick(Sender: TdxTileControlItem);
+    //procedure dxTileControl1ActionBarItem1Click(
+    //  Sender: TdxTileControlActionBarItem);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ForMenuPrincipal: TForMenuPrincipal;
+implementation
+
+{$R *.dfm}
+
+uses UntFrmDatosEmpresa,UNTfactura,UNTfacturaexp,UNTnotacredito,UNTconn,
+  UNTfacturausada, UNTbasededatos;
+
+
+procedure TForMenuPrincipal.FormCreate(Sender: TObject);
+// var
+//  ANombre:TForEmpresas;
+begin
+//  ANombre:=TForEmpresas.Create(nil);
+//  dxTileControl1.Title.Text:=ANombre.nombreEmpresa;
+end;
+
+//procedure TForMenuPrincipal.dxTileControl1ActionBarItem1Click(
+//  Sender: TdxTileControlActionBarItem);
+//  VAR
+//    VCODIGO:string;
+//begin
+//  VCODIGO := InputBox('Digite el codigo de la empresa','A&T SOLUCIONES EMPRESARIALES','00');
+//  DMCONN.DbParticular.Close;
+//  DMCONN.DbParticular.DBName:='';
+//  DMCONN.DbParticular.DBName:= 'C:\PROASISTEMAS\HELISA NIIF\HELI'+VCODIGO+'BD.HGW';
+//  if not DMCONN.DbParticular.Connected then
+//    DMCONN.DbParticular.Connected := True
+//  else
+//    DMCONN.DbParticular.Connected := False;
+//  DMCONN.DbParticular.Connected := True;
+//  if not DMCONN.TrParticular.Active then
+//    DMCONN.TrParticular.StartTransaction;
+//end;
+
+procedure TForMenuPrincipal.basededatosClick(Sender: TdxTileControlItem);
+var
+  FrmSplas : TFrmSplasEspera;
+begin
+  FrmSplas := TFrmSplasEspera.Create(Application);
+  FrmSplas.ShowModal;
+//  if FrmSplasEspera.TxtPassword.Text = '1234' then
+//  begin
+//    if Sender.DetailOptions.DetailControl = nil then
+//    begin
+//      Sender.DetailOptions.DetailControl := TFrmbasededatos.Create(Self);
+//      Sender.DetailOptions.DetailControl.Name := Sender.Name +'Details';
+//    end;
+//  end;
+end;
+
+procedure TForMenuPrincipal.dxTileControl1ActionBarItem1Click(
+  Sender: TdxTileControlActionBarItem);
+begin
+Application.Terminate;
+end;
+
+procedure TForMenuPrincipal.dxTileControl1KeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if key = VK_ESCAPE then
+    Application.Terminate;
+end;
+
+procedure TForMenuPrincipal.empresaActivateDetail(Sender: TdxTileControlItem);
+begin
+  dxTileControl1.Title.Text := 'DATOS PRINCIPALES DE LA EMPRESA';
+end;
+
+procedure TForMenuPrincipal.empresaClick(Sender: TdxTileControlItem);
+begin
+  if Sender.DetailOptions.DetailControl = nil then
+  begin
+    Sender.DetailOptions.DetailControl := TFrmDatosEmpresa.Create(Self);
+    Sender.DetailOptions.DetailControl.Name := Sender.Name +'Details';
+  end;
+end;
+
+procedure TForMenuPrincipal.empresaDeactivateDetail(Sender: TdxTileControlItem);
+begin
+  dxTileControl1.Title.Text := 'MENU PRINCIPAL';
+end;
+
+procedure TForMenuPrincipal.facturaFEClick(Sender: TdxTileControlItem);
+begin
+  if DMconn.QryDatosEmpresarango.AsInteger = DMconn.QryServidor2rango.AsInteger then
+  begin
+    if Sender.DetailOptions.DetailControl = nil then
+    begin
+      Sender.DetailOptions.DetailControl := TFrmFactura.Create(Self);
+      Sender.DetailOptions.DetailControl.Name := Sender.Name +'Details';
+      TFrmFactura(Sender.DetailOptions.DetailControl).CdsFacSinenviar.CreateDataSet;
+      TFrmFactura(Sender.DetailOptions.DetailControl).CdsFacSinenviar.Open;
+      TFrmFactura(Sender.DetailOptions.DetailControl).QryDocumentos.Close;
+      TFrmFactura(Sender.DetailOptions.DetailControl).QryDocumentos.Open;
+    end;
+  end;
+  if DMconn.QryDatosEmpresarango.AsInteger <> DMconn.QryServidor2rango.AsInteger then
+  begin
+    ShowMessage('No tienes rango de numeración para facturar');
+  end;
+end;
+
+procedure TForMenuPrincipal.facturaFEexClick(Sender: TdxTileControlItem);
+begin
+  if DMconn.QryDatosEmpresarango.AsInteger = DMconn.QryServidor2rango.AsInteger then
+  begin
+   if Sender.DetailOptions.DetailControl = nil then
+    begin
+      Sender.DetailOptions.DetailControl := TFrmFacturaExp.Create(Self);
+      Sender.DetailOptions.DetailControl.Name := Sender.Name +'Details';
+      TFrmFacturaExp(Sender.DetailOptions.DetailControl).CdsFacSinenviar.CreateDataSet;
+      TFrmFacturaExp(Sender.DetailOptions.DetailControl).CdsFacSinenviar.Open;
+      TFrmFacturaExp(Sender.DetailOptions.DetailControl).QryDocumentos.Close;
+      TFrmFacturaExp(Sender.DetailOptions.DetailControl).QryDocumentos.Open;
+    end;
+  end;
+  if DMconn.QryDatosEmpresarango.AsInteger <> DMconn.QryServidor2rango.AsInteger then
+  begin
+    ShowMessage('No tienes rango de numeración para facturar');
+  end;
+end;
+
+procedure TForMenuPrincipal.notaCreditoClick(Sender: TdxTileControlItem);
+begin
+  if DMconn.QryDatosEmpresarango.AsInteger = DMconn.QryServidor2rango.AsInteger then
+  begin
+    if Sender.DetailOptions.DetailControl = nil then
+    begin
+      Sender.DetailOptions.DetailControl := TFrmNotaCredito.Create(Self);
+      Sender.DetailOptions.DetailControl.Name := Sender.Name +'Details';
+      TFrmNotaCredito(Sender.DetailOptions.DetailControl).CdsNotasSinenviar.CreateDataSet;
+      TFrmNotaCredito(Sender.DetailOptions.DetailControl).CdsNotasSinenviar.Open;
+      TFrmNotaCredito(Sender.DetailOptions.DetailControl).QryDocumentos.Close;
+      TFrmNotaCredito(Sender.DetailOptions.DetailControl).QryDocumentos.Open;
+    end;
+  end;
+  if DMconn.QryDatosEmpresarango.AsInteger <> DMconn.QryServidor2rango.AsInteger then
+  begin
+    ShowMessage('No tienes rango de numeración para facturar');
+  end;
+end;
+
+procedure TForMenuPrincipal.facturaUsadaClick(Sender: TdxTileControlItem);
+begin
+  if Sender.DetailOptions.DetailControl = nil then
+  begin
+    Sender.DetailOptions.DetailControl := TFrmFacturaUsada.Create(Self);
+    Sender.DetailOptions.DetailControl.Name := Sender.Name +'Details';
+//    TFrmFacturaUsada(Sender.DetailOptions.DetailControl).CdsFacSinenviar.CreateDataSet;
+//    TFrmFacturaUsada(Sender.DetailOptions.DetailControl).CdsFacSinenviar.Open;
+//    TFrmFacturaUsada(Sender.DetailOptions.DetailControl).QryDocumentos.Close;
+//    TFrmFacturaUsada(Sender.DetailOptions.DetailControl).QryDocumentos.Open;
+  end;
+end;
+
+procedure TForMenuPrincipal.notacreditoUsadaClick(Sender: TdxTileControlItem);
+begin
+  Frmbasededatos.ShowModal;
+end;
+
+end.

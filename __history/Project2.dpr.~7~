@@ -1,0 +1,18 @@
+program Project2;
+
+uses
+  Vcl.Forms,
+  UNTprincipal in 'UNTprincipal.pas' {ForEmpresas},
+  UNTconn in 'UNTconn.pas' {DMconn: TDataModule},
+  UNTmenuprincipal in 'UNTmenuprincipal.pas' {ForMenuPrincipal},
+  UNTejemplo in 'UNTejemplo.pas' {FrmEjemplo: TFrame},
+  UNTfactura in 'UNTfactura.pas' {FrmFactura: TFrame};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TFrmFactura, FrmFactura);
+  Application.Run;
+end.

@@ -1,0 +1,38 @@
+unit UNTagregarfactura;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls, cxLookAndFeels,
+  cxLookAndFeelPainters, cxContainer, cxEdit, cxTextEdit, Vcl.Menus,
+  Vcl.StdCtrls, cxButtons;
+
+type
+  TFrmAgregarFactura = class(TForm)
+    cxTextEdit1: TcxTextEdit;
+    cxTextEdit2: TcxTextEdit;
+    cxTextEdit3: TcxTextEdit;
+    cxTextEdit4: TcxTextEdit;
+    BtnAceptar: TcxButton;
+    BtnCancelar: TcxButton;
+    procedure BtnCancelarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FrmAgregarFactura: TFrmAgregarFactura;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmAgregarFactura.BtnCancelarClick(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

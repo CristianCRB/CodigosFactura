@@ -1,0 +1,48 @@
+unit UNTbasededatos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, dxCustomTileControl, dxTileControl, UNTconn,
+  UntSplash, cxContainer, cxEdit, cxTextEdit, cxDBEdit, Vcl.StdCtrls, Data.DB, cxLabel;
+
+type
+  TFrmBaseDatos = class(TFrame)
+    dxTileControl1: TdxTileControl;
+    TxtDBNameGlobal: TcxDBTextEdit;
+    DtsDBName: TDataSource;
+    cxDBTextEdit1: TcxDBTextEdit;
+    cxDBTextEdit2: TcxDBTextEdit;
+    cxDBTextEdit3: TcxDBTextEdit;
+    cxDBTextEdit4: TcxDBTextEdit;
+    BtnActualizar: TButton;
+    cxLabel1: TcxLabel;
+    cxLabel2: TcxLabel;
+    cxLabel3: TcxLabel;
+    cxLabel4: TcxLabel;
+    cxLabel5: TcxLabel;
+    procedure BtnActualizarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFrmBaseDatos.BtnActualizarClick(Sender: TObject);
+begin
+  DMconn.Modificar;
+  DMconn.AplicarDB;
+  FrmSplash.LblActualizando.Caption := 'Actualizando';
+  TResourceStream.Create(HInstance,'GifImage_2', RT_RCDATA);
+  FrmSplash.ShowModal;
+  Sleep(5000);
+  ShowMessage('Actualizado Correctamente');
+end;
+
+end.

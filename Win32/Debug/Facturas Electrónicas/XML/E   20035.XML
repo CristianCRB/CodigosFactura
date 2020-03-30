@@ -1,0 +1,277 @@
+<?xml version="1.0" standalone="yes"?>
+<Factura xmlns="http://www.w3.org/2001/XMLSchema-instance">
+    <Encabezado>
+        <llavecomprobante>20035</llavecomprobante>
+        <nitemisor>900534151</nitemisor>
+        <codSucursal>900534151</codSucursal>
+        <tiporeceptor>1</tiporeceptor>
+        <tipoDocRec>31</tipoDocRec>
+        <nitreceptor>860350234</nitreceptor>
+        <digitoverificacion>8</digitoverificacion>
+        <obligacionesfiscalesreceptor>E-99</obligacionesfiscalesreceptor>
+        <tributoreceptor>01</tributoreceptor>
+        <regimenreceptor>48</regimenreceptor>
+        <nombrereceptor>BRINKS DE COLOMBIA SA</nombrereceptor>
+        <nombrereceptorpersona></nombrereceptorpersona>
+        <segnombrereceptor></segnombrereceptor>
+        <apellidosreceptor></apellidosreceptor>
+        <nombrecomercialreceptor></nombrecomercialreceptor>
+        <paisreceptor>CO</paisreceptor>
+        <codigodepartamento>11</codigodepartamento>
+        <departamentoreceptor>BOGOTÁ</departamentoreceptor>
+        <codigociudadreceptor>11001</codigociudadreceptor>
+        <ciudadreceptor>BOGOTÁ</ciudadreceptor>
+        <codigopostal>11001</codigopostal>
+        <direccionreceptor>CL 26 96J 90 PISO 8</direccionreceptor>
+        <telefonoreceptor>7449400</telefonoreceptor>
+        <telefonomovilreceptor>7449400</telefonomovilreceptor>
+        <mailreceptor>cuentasporpagar@brinks.com.co</mailreceptor>
+        <mailreceptorcontacto>cuentasporpagar@brinks.com.co</mailreceptorcontacto>
+        <nombrecontactoreceptor></nombrecontactoreceptor>
+        <tipocomprobante>01</tipocomprobante>
+        <noresolucion>18763002225737</noresolucion>
+        <prefijo>E</prefijo>
+        <folio>20035</folio>
+        <fecha>2020-01-08</fecha>
+        <hora>06:21:35 p. m.</hora>
+        <xslt>1</xslt>
+        <moneda>COP</moneda>
+        <subtotal>26170000.00</subtotal>
+        <metodopago>1</metodopago>
+        <mediopago>ZZZ</mediopago>
+        <fechavencimiento>2020-03-08</fechavencimiento>
+        <terminospago>60</terminospago>
+        <baseimpuesto>26170000.00</baseimpuesto>
+        <totalsindescuento>31142300.00</totalsindescuento>
+        <totaldescuentos>0.00</totaldescuentos>
+        <totalimpuestos>4972300.00</totalimpuestos>
+        <totalimpuestosretenidos>0.00</totalimpuestosretenidos>
+        <total>31142300.00</total>
+        <montoletra>TREINTA Y UN MILLONES CIENTO CUARENTA Y DOS MIL TRESCIENTOS Pesos MCTE </montoletra>
+		<textolibre></textolibre>
+		<ncidfact></ncidfact>
+		<nccod></nccod>
+		<nciddoc></nciddoc>
+		<ncuuid></ncuuid>
+		<ncfecha></ncfecha>
+		<ndidfact></ndidfact>
+		<ndcod></ndcod>
+		<ndiddoc></ndiddoc>
+		<nduuid></nduuid>
+		<ndfecha></ndfecha>
+		<extra1></extra1>
+		<extra2></extra2>
+		<extra3></extra3>
+		<extra4></extra4>
+		<extra5></extra5>
+		<extra6></extra6>
+		<extra7></extra7>
+		<extra8></extra8>
+		<extra9></extra9>
+		<extra10></extra10>
+		<extra11></extra11>
+		<extra12></extra12>
+		<extra13></extra13>
+		<extra14></extra14>
+		<extra15></extra15>
+		<extra16></extra16>
+		<extra17></extra17>
+		<extra18></extra18>
+		<idContrato></idContrato>
+		<tipoContrato></tipoContrato>
+		<numMatricula></numMatricula>
+		<numMatriculaMan></numMatriculaMan>
+		<nombreMandatario></nombreMandatario>
+		<nitDV>8</nitDV>
+		<tiposResponsabilidades></tiposResponsabilidades>
+		<numeroConformidad></numeroConformidad>
+		<numeroPedido></numeroPedido>
+		<ordenCompra></ordenCompra>
+		<hojaEntrada></hojaEntrada>
+		<centroOperacion></centroOperacion>
+    </Encabezado>
+<Detalle>
+  <Det>
+			<llaveComprobante>20035</llaveComprobante>
+			<idConcepto>1</idConcepto>
+			<cantidad>1.00</cantidad>
+			<unidadmedida>94</unidadmedida>
+			<impuestolinea>1102000.00</impuestolinea>
+			<tasa>19.00</tasa>
+			<tipo>01</tipo>
+			<baseimpuestos>5800000.00</baseimpuestos>
+			<subpartidaarancelaria></subpartidaarancelaria>
+			<identificacionproductos>6</identificacionproductos>
+			<descripcion>SERVICIO DE MANTENIMIENTO</descripcion>
+			<precioUnitario>5800000.00</precioUnitario>
+			<importe>5800000.00</importe>
+			<adicionalInfo></adicionalInfo>
+			<extra1></extra1>
+			<extra2></extra2>
+			<extra3></extra3>
+			<extra4></extra4>
+			<extra5></extra5>
+			<extra6></extra6>
+			<extra7></extra7>
+			<extra8></extra8>
+			<extra9></extra9>
+			<extra10></extra10>
+			<extra11></extra11>
+			<extra12></extra12>
+			<extra13></extra13>
+			<extra14></extra14>
+			<extra15></extra15>
+			<extra16></extra16>
+			<extra17></extra17>
+			<extra18></extra18>
+  </Det>
+</Detalle>
+<Impuestos>
+  <Imp>
+			<llaveComprobante>20035</llaveComprobante>
+			<idImpuesto>1</idImpuesto>
+			<baseimpuestos>5800000.00</baseimpuestos>
+			<tasa>19.00</tasa>
+			<tipoImpuesto>01</tipoImpuesto>
+			<importe>1102000.00</importe>
+  </Imp>
+</Impuestos>
+<Detalle>
+  <Det>
+			<llaveComprobante>20035</llaveComprobante>
+			<idConcepto>2</idConcepto>
+			<cantidad>1.00</cantidad>
+			<unidadmedida>94</unidadmedida>
+			<impuestolinea>1425000.00</impuestolinea>
+			<tasa>19.00</tasa>
+			<tipo>01</tipo>
+			<baseimpuestos>7500000.00</baseimpuestos>
+			<subpartidaarancelaria></subpartidaarancelaria>
+			<identificacionproductos>6</identificacionproductos>
+			<descripcion>SERVICIO DE MANTENIMIENTO</descripcion>
+			<precioUnitario>7500000.00</precioUnitario>
+			<importe>7500000.00</importe>
+			<adicionalInfo></adicionalInfo>
+			<extra1></extra1>
+			<extra2></extra2>
+			<extra3></extra3>
+			<extra4></extra4>
+			<extra5></extra5>
+			<extra6></extra6>
+			<extra7></extra7>
+			<extra8></extra8>
+			<extra9></extra9>
+			<extra10></extra10>
+			<extra11></extra11>
+			<extra12></extra12>
+			<extra13></extra13>
+			<extra14></extra14>
+			<extra15></extra15>
+			<extra16></extra16>
+			<extra17></extra17>
+			<extra18></extra18>
+  </Det>
+</Detalle>
+<Impuestos>
+  <Imp>
+			<llaveComprobante>20035</llaveComprobante>
+			<idImpuesto>1</idImpuesto>
+			<baseimpuestos>7500000.00</baseimpuestos>
+			<tasa>19.00</tasa>
+			<tipoImpuesto>01</tipoImpuesto>
+			<importe>1425000.00</importe>
+  </Imp>
+</Impuestos>
+<Detalle>
+  <Det>
+			<llaveComprobante>20035</llaveComprobante>
+			<idConcepto>3</idConcepto>
+			<cantidad>1.00</cantidad>
+			<unidadmedida>94</unidadmedida>
+			<impuestolinea>893000.00</impuestolinea>
+			<tasa>19.00</tasa>
+			<tipo>01</tipo>
+			<baseimpuestos>4700000.00</baseimpuestos>
+			<subpartidaarancelaria></subpartidaarancelaria>
+			<identificacionproductos>6</identificacionproductos>
+			<descripcion>SERVICIO DE MANTENIMIENTO</descripcion>
+			<precioUnitario>4700000.00</precioUnitario>
+			<importe>4700000.00</importe>
+			<adicionalInfo></adicionalInfo>
+			<extra1></extra1>
+			<extra2></extra2>
+			<extra3></extra3>
+			<extra4></extra4>
+			<extra5></extra5>
+			<extra6></extra6>
+			<extra7></extra7>
+			<extra8></extra8>
+			<extra9></extra9>
+			<extra10></extra10>
+			<extra11></extra11>
+			<extra12></extra12>
+			<extra13></extra13>
+			<extra14></extra14>
+			<extra15></extra15>
+			<extra16></extra16>
+			<extra17></extra17>
+			<extra18></extra18>
+  </Det>
+</Detalle>
+<Impuestos>
+  <Imp>
+			<llaveComprobante>20035</llaveComprobante>
+			<idImpuesto>1</idImpuesto>
+			<baseimpuestos>4700000.00</baseimpuestos>
+			<tasa>19.00</tasa>
+			<tipoImpuesto>01</tipoImpuesto>
+			<importe>893000.00</importe>
+  </Imp>
+</Impuestos>
+<Detalle>
+  <Det>
+			<llaveComprobante>20035</llaveComprobante>
+			<idConcepto>4</idConcepto>
+			<cantidad>1.00</cantidad>
+			<unidadmedida>94</unidadmedida>
+			<impuestolinea>1552300.00</impuestolinea>
+			<tasa>19.00</tasa>
+			<tipo>01</tipo>
+			<baseimpuestos>8170000.00</baseimpuestos>
+			<subpartidaarancelaria></subpartidaarancelaria>
+			<identificacionproductos>6</identificacionproductos>
+			<descripcion>SERVICIO DE MANTENIMIENTO</descripcion>
+			<precioUnitario>8170000.00</precioUnitario>
+			<importe>8170000.00</importe>
+			<adicionalInfo></adicionalInfo>
+			<extra1></extra1>
+			<extra2></extra2>
+			<extra3></extra3>
+			<extra4></extra4>
+			<extra5></extra5>
+			<extra6></extra6>
+			<extra7></extra7>
+			<extra8></extra8>
+			<extra9></extra9>
+			<extra10></extra10>
+			<extra11></extra11>
+			<extra12></extra12>
+			<extra13></extra13>
+			<extra14></extra14>
+			<extra15></extra15>
+			<extra16></extra16>
+			<extra17></extra17>
+			<extra18></extra18>
+  </Det>
+</Detalle>
+<Impuestos>
+  <Imp>
+			<llaveComprobante>20035</llaveComprobante>
+			<idImpuesto>1</idImpuesto>
+			<baseimpuestos>8170000.00</baseimpuestos>
+			<tasa>19.00</tasa>
+			<tipoImpuesto>01</tipoImpuesto>
+			<importe>1552300.00</importe>
+  </Imp>
+</Impuestos>
+</Factura>

@@ -1,0 +1,14 @@
+program Project2;
+
+uses
+  Vcl.Forms,
+  UNTprincipal in 'UNTprincipal.pas' {ForEmpresas};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForEmpresas, ForEmpresas);
+  Application.Run;
+end.

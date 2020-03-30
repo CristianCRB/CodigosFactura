@@ -1,0 +1,640 @@
+unit UNTnc;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, cxGraphics, cxControls,
+  cxLookAndFeels, cxLookAndFeelPainters, dxCustomTileControl, dxTileControl, UNTconn,
+  cxContainer, cxEdit, cxGroupBox, cxRadioGroup, cxTextEdit, cxLabel, Vcl.Menus,
+  Vcl.StdCtrls, cxButtons, Data.FMTBcd, Data.SqlExpr, Datasnap.DBClient,
+  SimpleDS, Data.DB, FIBDataSet, pFIBDataSet,
+
+  {unidades a incluir}
+  EncdDecd,IdAuthentication, IdIOHandler,
+  IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL, IdBaseComponent,
+  IdComponent, IdTCPConnection, IdTCPClient, IdHTTP,IdGlobal,
+  System.JSON,IdServerIOHandler,System.NetEncoding, DebenuPDFLibrary1711,
+  dxCustomTileControl, dxTileControl, FIBDatabase, pFIBDatabase, FIBDataSet,
+  pFIBDataSet, Datasnap.DBClient, SimpleDS, Data.DBXMySQL, Data.DB, Data.FMTBcd,
+  Data.SqlExpr, cxStyles, cxCustomData, cxFilter, cxData, cxDataStorage,
+  cxNavigator, cxDBData, cxGridCustomTableView, cxGridTableView,
+  cxGridDBTableView, cxGridLevel, cxClasses, cxGridCustomView, cxGrid;
+  type  TRespuestas= Record
+     cufe:AnsiString;
+     Xml:AnsiString;
+     documento:string;
+     error:AnsiString;
+  end;
+type
+  TFrmNC = class(TFrame)
+    TxtUrlXML: TcxTextEdit;
+    cxLabel5: TcxLabel;
+    TxtUrlVal: TcxTextEdit;
+    cxLabel4: TcxLabel;
+    TxtClave: TcxTextEdit;
+    cxLabel3: TcxLabel;
+    TxtUsuario: TcxTextEdit;
+    cxLabel2: TcxLabel;
+    TxtDocumento: TcxTextEdit;
+    cxLabel1: TcxLabel;
+    cxButton1: TcxButton;
+    QryDatosEmpresa: TSimpleDataSet;
+    IntegerField1: TIntegerField;
+    QryDatosEmpresanombreempresa: TStringField;
+    QryDatosEmpresadireccion: TStringField;
+    QryDatosEmpresatelefonos: TStringField;
+    QryDatosEmpresaciudad: TStringField;
+    QryDatosEmpresacorreo: TStringField;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    StringField4: TStringField;
+    StringField5: TStringField;
+    StringField6: TStringField;
+    StringField7: TStringField;
+    StringField8: TStringField;
+    QryDatosEmpresaurltoken: TStringField;
+    QryDatosEmpresaurlfactura: TStringField;
+    QryDatosEmpresacodigohelisa: TIntegerField;
+    QryDatosEmpresaurlpdf: TStringField;
+    QryMaestroFacturas: TpFIBDataSet;
+    QryMaestroFacturasFOLIO: TFIBStringField;
+    QryMaestroFacturasNITEMISOR: TFIBStringField;
+    QryMaestroFacturasCODIGOSUCURSAL: TFIBIntegerField;
+    QryMaestroFacturasTIPORECEPTOR: TFIBIntegerField;
+    QryMaestroFacturasTIPODOCREC: TFIBIntegerField;
+    QryMaestroFacturasNITRECEPTOR: TFIBStringField;
+    QryMaestroFacturasDIGITOVERIFICACION: TFIBStringField;
+    QryMaestroFacturasOBLIGACIONESFISCALESRECEPTOR: TFIBStringField;
+    QryMaestroFacturasTRIBUTORECEPTOR: TFIBStringField;
+    QryMaestroFacturasREGIMENRECEPTOR: TFIBStringField;
+    QryMaestroFacturasNOMBRERECEPTOR: TFIBStringField;
+    QryMaestroFacturasNOMBRERECEPTORPERSONA: TFIBStringField;
+    QryMaestroFacturasSEGNOMBRERECEPTOR: TFIBStringField;
+    QryMaestroFacturasAPELLIDOSRECEPTOR: TFIBStringField;
+    QryMaestroFacturasAPELLIDOSRECEPTOR1: TFIBStringField;
+    QryMaestroFacturasPAISRECEPTOR: TFIBStringField;
+    QryMaestroFacturasCODIGODEPARTAMENTO: TFIBStringField;
+    QryMaestroFacturasNOMBREDPTO: TFIBStringField;
+    QryMaestroFacturasCODIGOCIUDADRECEPTOR: TFIBStringField;
+    QryMaestroFacturasCIUDADRECEPTOR: TFIBStringField;
+    QryMaestroFacturasCODIGOPOSTAL: TFIBIntegerField;
+    QryMaestroFacturasDIRECCIONRECEPTOR: TFIBStringField;
+    QryMaestroFacturasTELEFONORECEPTOR: TFIBStringField;
+    QryMaestroFacturasTELEFONOMOVILRECEPTOR: TFIBStringField;
+    QryMaestroFacturasMAILRECEPTOR: TFIBStringField;
+    QryMaestroFacturasMAILRECEPTORCONTACTO: TFIBStringField;
+    QryMaestroFacturasNOMBRECONTACTORECEPTOR: TFIBStringField;
+    QryMaestroFacturasTIPOCOMPROBANTE: TFIBStringField;
+    QryMaestroFacturasNORESOLUCION: TFIBStringField;
+    QryMaestroFacturasPREFIJO: TFIBStringField;
+    QryMaestroFacturasFECHA: TFIBStringField;
+    QryMaestroFacturasHORA: TFIBStringField;
+    QryMaestroFacturasXSLT: TFIBStringField;
+    QryMaestroFacturasMONEDA: TFIBStringField;
+    QryMaestroFacturasSUBTOTAL: TFIBFloatField;
+    QryMaestroFacturasMETODOPAGO: TFIBStringField;
+    QryMaestroFacturasMEDIOPAGO: TFIBStringField;
+    QryMaestroFacturasFECHAVENCIMIENTO: TFIBStringField;
+    QryMaestroFacturasTERMINOSPAGO: TFIBIntegerField;
+    QryMaestroFacturasBASEIMPUESTO: TFIBFloatField;
+    QryMaestroFacturasTOTALSINDESCUENTO: TFIBFloatField;
+    QryMaestroFacturasTOTALIMPUESTOS: TFIBFloatField;
+    QryMaestroFacturasTOTALIMPUESTOSRETENIDOS: TFIBFloatField;
+    QryMaestroFacturasTOTAL: TFIBFloatField;
+    QryMaestroFacturasMONTOLETRA: TFIBStringField;
+    QryMaestroFacturasTEXTOLIBRE: TFIBStringField;
+    QryMaestroFacturasNCIDFACT: TFIBStringField;
+    QryMaestroFacturasNCCOD: TFIBStringField;
+    QryMaestroFacturasLLAVECOMPROBANTE: TFIBStringField;
+    QryMaestroFacturasIDCONCEPTO: TFIBIntegerField;
+    QryMaestroFacturasCANTIDAD: TFIBFloatField;
+    QryMaestroFacturasUNIDADMEDIDA: TFIBStringField;
+    QryMaestroFacturasIMPUESTOLINEA: TFIBFloatField;
+    QryMaestroFacturasTASA: TFIBFloatField;
+    QryMaestroFacturasTIPO: TFIBStringField;
+    QryMaestroFacturasBASEIMPUESTOS: TFIBFloatField;
+    QryMaestroFacturasSUBPARTIDAARANCELARIA: TFIBStringField;
+    QryMaestroFacturasIDENTIFICACIONPRODUCTOS: TFIBStringField;
+    QryMaestroFacturasDESCRIPCION: TFIBStringField;
+    QryMaestroFacturasPRECIOUNITARIO: TFIBFloatField;
+    QryMaestroFacturasIMPORTEDETALLE: TFIBFloatField;
+    QryMaestroFacturasLLAVECOMPROBANTE1: TFIBStringField;
+    QryMaestroFacturasIDIMPUESTO: TFIBIntegerField;
+    QryMaestroFacturasIMPORTEIMPUESTO: TFIBFloatField;
+    QryMaestroFacturasTASA1: TFIBFloatField;
+    QryMaestroFacturasTIPOIMPUESTO: TFIBStringField;
+    QryActualizaEstado: TSQLQuery;
+  procedure cxButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+    vRegactualiza:TRespuestas;
+    procedure GenerarXML(pDocumento:String);
+    Procedure ActualizaEstado(pDocumento,pXML,pCufe,pError:String);
+    Function EncodeFile(const FileName: string): AnsiString;
+    Function ObtenerToken(pUsuario,pPassword,pUrl:String):AnsiString;
+    Function EnvioXMLObtenerCufe(pUsuario,pPassword,pUrl,pToken:String;pvXmlEncode:WideString):AnsiString;
+//    Function EnvioPDF(pUsuario,pPassword,pUrl,pCufe:String;pPDFEncode:WideString):AnsiString;
+
+
+//  Function EncodeFile(const FileName: string): AnsiString;
+//  Function ObtenerToken(pUsuario,pPassword,pUrl:String):AnsiString;
+//  Function EnvioXMLObtenerCufe(pUsuario,pPassword,pUrl,pToken:String;pvXmlEncode:WideString):AnsiString;
+//  Function EnvioPDF(pUsuario,pPassword,pUrl,pCufe:String;pPDFEncode:WideString):AnsiString;
+
+  public
+    { Public declarations }
+    PDFLibrary: TDebenuPDFLibrary1711;
+    UnlockResult: Integer;
+    Licencia: WideString;
+    Factura: WideString;
+    NFactura: WideString;
+    QR: WideString;
+    CUFE: WideString;
+  end;
+
+var
+  FrmFactura: TFrmNC;
+
+implementation
+
+{$R *.dfm}
+
+
+
+procedure TFrmNC.ActualizaEstado(pDocumento,pXML,pCufe,pError:String);
+begin
+  QryActualizaEstado.Close;
+  QryActualizaEstado.ParamByName('pDocumento').AsString := pDocumento;
+  QryActualizaEstado.ParamByName('pXml').AsString       := pXML;
+  QryActualizaEstado.ParamByName('pCufe').AsString      := pCufe;
+  QryActualizaEstado.ParamByName('pEstado').AsInteger   := 1;
+  QryActualizaEstado.ParamByName('pError').AsString      := pError;
+  QryActualizaEstado.ExecSQL();
+end;
+
+procedure TFrmNC.cxButton1Click(Sender: TObject);
+begin
+  GenerarXML(TxtDocumento.Text);
+  PDFLibrary := TDebenuPDFLibrary1711.Create;
+  Licencia:='jh36n48x7s94ma5mc68j4qb3y';
+  QR:= 'NumFac: SETT '+IntToStr(QryMaestroFacturasFOLIO.AsInteger)+sLineBreak+
+        'FecFac: '+QryMaestroFacturasFECHA.AsString+sLineBreak+
+        'HorFac: '+QryMaestroFacturasFECHA.AsString+sLineBreak+
+        'NitFac: 901062786'+sLineBreak+
+        'DocAdq: '+QryMaestroFacturasnitreceptor.AsString+sLineBreak+
+        'Valfac: '+FormatFloat('0.00',QryMaestroFacturasbaseimpuesto.AsFloat)+sLineBreak+
+        'ValIva: '+FormatFloat('0.00',QryMaestroFacturasTOTALIMPUESTOS.AsFloat)+sLineBreak+
+        'ValOtroIm: 0.00'+sLineBreak+
+        'ValTolfac: '+FormatFloat('0.00',QryMaestroFacturasTOTAL.AsFloat)+sLineBreak+
+        'CUFE ';
+  Factura:= 'SETT';
+  NFactura:= IntToStr(QryMaestroFacturasFolio.AsInteger);
+  try
+    UnlockResult := PDFLibrary.UnlockKey(Licencia);
+    if UnlockResult = 1 then
+    begin
+      PDFLibrary.LoadFromFile('C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\envio xml\Win32\Debug\'+Factura+''+NFactura+'.pdf','');
+      PDFLibrary.NormalizePage(1);
+      PDFLibrary.CombineContentStreams;
+      PDFLibrary.DrawText(1,1,Licencia);
+      PDFLibrary.DrawQRCode(100,100,80,QR,0,0);
+      PDFLibrary.SaveToFile('C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\envio xml\Win32\Debug\Salida\'+Factura+''+NFactura+'out.pdf');
+    end else
+    begin
+      ShowMessage('Licencia invalida de PDF');
+    end;
+  finally
+    PDFLibrary.Free;
+  end;
+end;
+
+function TFrmNC.EncodeFile(const FileName: string): AnsiString;
+  var
+    stream: TMemoryStream;
+  begin
+    stream := TMemoryStream.Create;
+    try
+      stream.LoadFromFile(Filename);
+      result := EncodeBase64(stream.Memory, (stream.Size));
+    finally
+      stream.Free;
+    end;
+
+end;
+
+//function TForm1.EnvioPDF(pUsuario, pPassword, pUrl, pCufe: String;
+//  pPDFEncode: WideString): AnsiString;
+//   var
+//      vCadenaConexion,htmlDna:String;
+//      vMemory:TMemoryStream;
+//      vIdHTTF1:TIdHTTP;
+//      vSSL2: TIdSSLIOHandlerSocketOpenSSL;
+//  begin
+//    vSSL2:= TIdSSLIOHandlerSocketOpenSSL.Create;
+//    vIdHTTF1:= TIdHTTP.Create;
+//    vIdHTTF1.IOHandler := vSSL2;
+//    vMemory := TMemoryStream.Create;
+//    vCadenaConexion :='{'+chr(13)+chr(9)+'"pdf64":"'+pPDFEncode+'",'+'"cufe":"'+pCufe+'",'+'"username": "'+pUsuario+'",'+chr(13)+'"password": "'+pPassword+'",'+chr(13)+'"}';
+//end;
+
+function TFrmNC.EnvioXMLObtenerCufe(pUsuario, pPassword, pUrl, pToken: String;
+  pvXmlEncode: WideString): AnsiString;
+    var
+      vCadenaConexion,htmlDna,vCadenaToken,vTrim:String;
+      vMemory:TMemoryStream;
+      vLstResultado:TStringList;
+      vToken,vCufe:AnsiString;
+      vIdHTTF1:TIdHTTP;
+      vSSL2: TIdSSLIOHandlerSocketOpenSSL;
+      vIndexLista,I:Integer;
+      vSinError:Boolean;
+  begin
+    vSinError := False;
+    vSSL2:= TIdSSLIOHandlerSocketOpenSSL.Create;
+    vIdHTTF1:= TIdHTTP.Create;
+    vIdHTTF1.IOHandler := vSSL2;
+    vMemory := TMemoryStream.Create;
+    vLstResultado:=TStringList.Create;
+    vLstResultado.Delimiter:=',';
+    vCadenaConexion :='{'+chr(13)+chr(9)+ '"username": "'+pUsuario+'",'+chr(13)+'"password": "'+pPassword+'",'+chr(13) +'"sucursal":"",'+chr(13)+'"base64doc":"'+pvXmlEncode+'"}';
+    WriteStringToStream(vMemory, vCadenaConexion);
+    vMemory.Position := 0;
+    vIdHTTF1.Request.ContentType:= 'application/json';
+    vIdHTTF1.Request.Charset:='utf-8';
+    vIdHTTF1.Request.CustomHeaders.Values['Authorization']:=pToken;
+    try
+      htmlDna := vIdHTTF1.Post(pUrl, vMemory);
+      vLstResultado.text:=TrimLeft(htmlDna);
+      for i := 0 to vLstResultado.Count -1 do
+      begin
+         if ((Trim(vLstResultado[i]) = '"StatusCode" : "00"') or (Trim(vLstResultado[i]) = '"StatusCode" : "00",')) then
+           vSinError := True;
+      end;
+      if vSinError then
+      begin
+        for I := 0 to vLstResultado.Count -1 do
+        begin
+          vTrim := Trim(vLstResultado[i]);
+          if Copy(vTrim,1,6)= '"cufe"' then
+          begin
+            vCufe :=Copy(vLstResultado[i],13,length(vLstResultado[i])-3);
+            vCufe := StringReplace(vCufe,'"','',[rfReplaceAll]);
+          end;
+        end;
+      end;
+    except on E: Exception do
+              begin
+                vCufe := 'ERROR Obteniendo Cufe'+ EIdHTTPProtocolException(e).ErrorMessage;
+              end;
+    end;
+    Result:= vCufe;
+    FreeAndNil(vMemory);
+    FreeAndNil(vSSL2);
+    FreeAndNil(vIdHTTF1);
+    FreeAndNil(vLstResultado);
+end;
+
+procedure TFrmNC.GenerarXML(pDocumento: String);
+   type tNombre = Record
+      vNombre1  :String;
+      vNombre2  :String;
+      vApellido1:String;
+      vApellido2:String;
+      vRazonSocial:String;
+    end;
+   var
+    CodigoXML: TStringList;
+    vCaracterTab:Char;
+    vCaracterEnter:Char;
+    vNombreCliente:Tnombre;
+    I,Tempo: Integer;
+    Nombres: TStrings;
+    cadena,vResultadoToken,vResultadoCufe:String;
+    vDiasNegociados:Integer;
+    vdiavence,vmesvence,vaniovence:word;
+    vFormatoFecha:String;
+    vCodificadoXML:WideString;
+    vCodificadoXML1 :Tstringlist;
+    stream,makeshort: TMemoryStream;
+    vBase64:TBase64Encoding;
+    vNombreFile:String;
+    vClaseDoc:Integer;
+    vDia,vmes,vAnio:Word;
+begin
+  DMconn.DbParticular.Close;
+  DMconn.DbParticular.Open;
+  vRegactualiza.documento := pDocumento;
+  stream := TMemoryStream.Create;
+  QryMaestroFacturas.Close;
+  QryMaestroFacturas.ParamByName('pDocumento').AsString := pDocumento;
+  QryMaestroFacturas.Open;
+  vNombreFile:= Copy(pDocumento,1,4)+IntToStr(QryMaestroFacturasFolio.AsInteger);
+  vDiasNegociados := QryMaestroFacturasTERMINOSPAGO.AsInteger;
+  vFormatoFecha   := QryMaestroFacturasFECHA.AsString;
+  vCaracterTab   := chr(9);
+  vCaracterEnter := chr(13);
+  CodigoXML := TStringList.Create;
+    with CodigoXML do begin
+      Add('<?xml version="1.0" standalone="yes"?>');
+      Add('<Factura xmlns="http://www.w3.org/2001/XMLSchema-instance">'); // inicio de la lista de libros
+      Add('    <Encabezado>');
+      Add('        <llavecomprobante>'+IntToStr(QryMaestroFacturasFolio.AsInteger)+'</llavecomprobante>');
+      Add('        <nitemisor>901062786</nitemisor>');
+      Add('        <codSucursal>'+QryMaestroFacturasCODIGOSUCURSAL.AsString+'</codSucursal>');
+      Add('        <tiporeceptor>'+IntToStr(QryMaestroFacturasTIPORECEPTOR.AsInteger)+'</tiporeceptor>');
+      Add('        <tipoDocRec>'+IntToStr(QryMaestroFacturastipoDocRec.AsInteger)+'</tipoDocRec>');
+      Add('        <nitreceptor>'+QryMaestroFacturasnitreceptor.AsString+'</nitreceptor>');
+      Add('        <digitoverificacion>'+QryMaestroFacturasdigitoverificacion.AsString+'</digitoverificacion>');
+      Add('        <obligacionesfiscalesreceptor>'+QryMaestroFacturasobligacionesfiscalesreceptor.AsString+'</obligacionesfiscalesreceptor>');
+//      Add('        <tributoreceptor>'+QryMaestroFacturastributoreceptor.AsString+'</tributoreceptor>');{Cambiar por 01 mientras F1 arregla el dato}
+      Add('        <tributoreceptor>01</tributoreceptor>');{Cambiar por 01 mientras F1 arregla el dato}
+      Add('        <regimenreceptor>'+QryMaestroFacturasregimenreceptor.AsString+'</regimenreceptor>');
+      Add('        <nombrereceptor>'+QryMaestroFacturasnombrereceptor.AsString+'</nombrereceptor>');
+      Add('        <nombrereceptorpersona>'+QryMaestroFacturasNOMBRERECEPTORPERSONA.AsString+'</nombrereceptorpersona>');
+      Add('        <segnombrereceptor>'+QryMaestroFacturasSEGNOMBRERECEPTOR.AsString+'</segnombrereceptor>');
+      Add('        <apellidosreceptor>'+QryMaestroFacturasAPELLIDOSRECEPTOR.AsString+'</apellidosreceptor>');
+      Add('        <nombrecomercialreceptor>'+QryMaestroFacturasNOMBRERECEPTORPERSONA.AsString+'</nombrecomercialreceptor>');
+      Add('        <paisreceptor>CO</paisreceptor>');
+      Add('        <codigodepartamento>'+IntToStr(QryMaestroFacturasCODIGODEPARTAMENTO.AsInteger)+'</codigodepartamento>');
+      Add('        <departamentoreceptor>'+QryMaestroFacturasNOMBREDPTO.AsString+'</departamentoreceptor>');
+      Add('        <codigociudadreceptor>'+inttostr(11001)+'</codigociudadreceptor>');
+      Add('        <ciudadreceptor>'+QryMaestroFacturasCIUDADRECEPTOR.AsString+'</ciudadreceptor>');
+      Add('        <codigopostal>'+IntToStr(QryMaestroFacturasCODIGOPOSTAL.AsInteger)+'</codigopostal>');
+      Add('        <direccionreceptor>'+QryMaestroFacturasDIRECCIONRECEPTOR.AsString+'</direccionreceptor>');
+      Add('        <telefonoreceptor>'+QryMaestroFacturasTELEFONORECEPTOR.AsString+'</telefonoreceptor>');
+      Add('        <telefonomovilreceptor>'+QryMaestroFacturasTELEFONOMOVILRECEPTOR.AsString+'</telefonomovilreceptor>');
+      Add('        <mailreceptor>'+QryMaestroFacturasMAILRECEPTOR.AsString+'</mailreceptor>');
+      Add('        <mailreceptorcontacto>'+QryMaestroFacturasMAILRECEPTORCONTACTO.AsString+'</mailreceptorcontacto>');
+      Add('        <nombrecontactoreceptor></nombrecontactoreceptor>');
+      Add('        <tipocomprobante>01</tipocomprobante>');
+      Add('        <noresolucion>18760000001</noresolucion>');
+      Add('        <prefijo>SETT</prefijo>');
+      Add('        <folio>'+QryMaestroFacturasFOLIO.AsString+'</folio>');
+      Add('        <fecha>'+QryMaestroFacturasFECHA.AsString+'</fecha>');
+      Add('        <hora>00:00:00</hora>');
+      Add('        <xslt>1</xslt>');
+      Add('        <moneda>COP</moneda>');
+      Add('        <subtotal>'+FormatFloat('0.00',QryMaestroFacturasbaseimpuesto.AsFloat)+'</subtotal>');
+      Add('        <metodopago>1</metodopago>');
+      Add('        <mediopago>ZZZ</mediopago>');
+      Add('        <fechavencimiento>'+vFormatoFecha+'</fechavencimiento>');
+      Add('        <terminospago>'+IntToStr(vDiasNegociados)+'</terminospago>');
+      Add('        <baseimpuesto>'+FormatFloat('0.00',QryMaestroFacturasbaseimpuesto.AsFloat)+'</baseimpuesto>');
+      Add('        <totalsindescuento>'+FormatFloat('0.00',QryMaestroFacturasTOTALSINDESCUENTO.AsFloat)+'</totalsindescuento>');
+      Add('        <totaldescuentos>0.00</totaldescuentos>');
+      Add('        <totalimpuestos>'+FormatFloat('0.00',QryMaestroFacturasTOTALIMPUESTOS.AsFloat)+'</totalimpuestos>');
+      Add('        <totalimpuestosretenidos>'+FormatFloat('0.00',QryMaestroFacturasTOTALIMPUESTOSRETENIDOS.AsFloat)+'</totalimpuestosretenidos>');
+      Add('        <total>'+FormatFloat('0.00',QryMaestroFacturasTOTAL.AsFloat)+'</total>');
+      Add('        <montoletra>'+QryMaestroFacturasMontoLetra.AsString+'</montoletra>');
+      Add(vCaracterTab+vCaracterTab+'<textolibre>PRUEBA FACTURA DNA SOFTWARE</textolibre>');
+      Add(vCaracterTab+vCaracterTab+'<ncidfact></ncidfact>');
+      Add(vCaracterTab+vCaracterTab+'<nccod></nccod>');
+      Add(vCaracterTab+vCaracterTab+'<nciddoc></nciddoc>');
+      Add(vCaracterTab+vCaracterTab+'<ncuuid></ncuuid>');
+      Add(vCaracterTab+vCaracterTab+'<ncfecha></ncfecha>');
+      Add(vCaracterTab+vCaracterTab+'<ndidfact></ndidfact>');
+      Add(vCaracterTab+vCaracterTab+'<ndcod></ndcod>');
+      Add(vCaracterTab+vCaracterTab+'<ndiddoc></ndiddoc>');
+      Add(vCaracterTab+vCaracterTab+'<nduuid></nduuid>');
+      Add(vCaracterTab+vCaracterTab+'<ndfecha></ndfecha>');
+      Add(vCaracterTab+vCaracterTab+'<extra1></extra1>');
+      Add(vCaracterTab+vCaracterTab+'<extra2></extra2>');
+      Add(vCaracterTab+vCaracterTab+'<extra3></extra3>');
+      Add(vCaracterTab+vCaracterTab+'<extra4></extra4>');
+      Add(vCaracterTab+vCaracterTab+'<extra5></extra5>');
+      Add(vCaracterTab+vCaracterTab+'<extra6></extra6>');
+      Add(vCaracterTab+vCaracterTab+'<extra7></extra7>');
+      Add(vCaracterTab+vCaracterTab+'<extra8></extra8>');
+      Add(vCaracterTab+vCaracterTab+'<extra9></extra9>');
+      Add(vCaracterTab+vCaracterTab+'<extra10></extra10>');
+      Add(vCaracterTab+vCaracterTab+'<extra11></extra11>');
+      Add(vCaracterTab+vCaracterTab+'<extra12></extra12>');
+      Add(vCaracterTab+vCaracterTab+'<extra13></extra13>');
+      Add(vCaracterTab+vCaracterTab+'<extra14></extra14>');
+      Add(vCaracterTab+vCaracterTab+'<extra15></extra15>');
+      Add(vCaracterTab+vCaracterTab+'<extra16></extra16>');
+      Add(vCaracterTab+vCaracterTab+'<extra17></extra17>');
+      Add(vCaracterTab+vCaracterTab+'<extra18></extra18>');
+      Add(vCaracterTab+vCaracterTab+'<idContrato></idContrato>');
+      Add(vCaracterTab+vCaracterTab+'<tipoContrato></tipoContrato>');
+      Add(vCaracterTab+vCaracterTab+'<numMatricula></numMatricula>');
+      Add(vCaracterTab+vCaracterTab+'<numMatriculaMan></numMatriculaMan>');
+      Add(vCaracterTab+vCaracterTab+'<nombreMandatario></nombreMandatario>');
+      Add(vCaracterTab+vCaracterTab+'<nitDV></nitDV>');
+      Add(vCaracterTab+vCaracterTab+'<tiposResponsabilidades></tiposResponsabilidades>');
+      Add(vCaracterTab+vCaracterTab+'<numeroConformidad></numeroConformidad>');
+      Add(vCaracterTab+vCaracterTab+'<numeroPedido></numeroPedido>');
+      Add(vCaracterTab+vCaracterTab+'<ordenCompra></ordenCompra>');
+      Add(vCaracterTab+vCaracterTab+'<hojaEntrada></hojaEntrada>');
+      Add(vCaracterTab+vCaracterTab+'<centroOperacion></centroOperacion>');
+      Add('    </Encabezado>');
+      Add('<Detalle>');
+      Add('  <Det>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<llaveComprobante>'+IntToStr(QryMaestroFacturasFOLIO.AsInteger)+'</llaveComprobante>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<idConcepto>'+IntToStr(QryMaestroFacturasIDCONCEPTO.AsInteger)+'</idConcepto>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<cantidad>'+FormatFloat('0.00',QryMaestroFacturasCANTIDAD.AsFloat)+'</cantidad>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<unidadmedida>94</unidadmedida>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<impuestolinea>'+FormatFloat('0.00',QryMaestroFacturasIMPUESTOLINEA.AsFloat)+'</impuestolinea>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<tasa>'+FormatFloat('0.00',QryMaestroFacturasTASA.AsFloat)+'</tasa>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<tipo>'+QryMaestroFacturasTIPO.AsString+'</tipo>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<baseimpuestos>'+FormatFloat('0.00',QryMaestroFacturasBASEIMPUESTOS.AsFloat)+'</baseimpuestos>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<subpartidaarancelaria></subpartidaarancelaria>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<identificacionproductos>'+QryMaestroFacturasIDENTIFICACIONPRODUCTOS.AsString+'</identificacionproductos>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<descripcion>'+QryMaestroFacturasDESCRIPCION.AsString+'</descripcion>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<precioUnitario>'+FormatFloat('0.00',QryMaestroFacturasPRECIOUNITARIO.AsFloat)+'</precioUnitario>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<importe>'+FormatFloat('0.00',QryMaestroFacturasIMPORTEDETALLE.AsFloat)+'</importe>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<adicionalInfo></adicionalInfo>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra1></extra1>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra2></extra2>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra3></extra3>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra4></extra4>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra5></extra5>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra6></extra6>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra7></extra7>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra8></extra8>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra9></extra9>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra10></extra10>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra11></extra11>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra12></extra12>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra13></extra13>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra14></extra14>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra15></extra15>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra16></extra16>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra17></extra17>');
+      Add(vCaracterTab+vCaracterTab+vCaracterTab+'<extra18></extra18>');
+      Add('  </Det>');
+      Add('</Detalle>');
+      Add('<Impuestos>');
+      Add('                            <Imp>');
+      Add('                                 <llaveComprobante>'+IntToStr(QryMaestroFacturasFOLIO.AsInteger)+'</llaveComprobante>');
+      Add('                                            <idImpuesto>1</idImpuesto>');
+      Add('                             <baseimpuestos>'+FormatFloat('0.00',QryMaestroFacturasBASEIMPUESTO.AsFloat)+'</baseimpuestos>');
+      Add('                                            <tasa>'+FormatFloat('0.00',QryMaestroFacturasTASA.AsFloat)+'</tasa>');
+      Add('                                            <tipoImpuesto>01</tipoImpuesto>');
+      Add('                                            <importe>'+FormatFloat('0.00',QryMaestroFacturasIMPORTEIMPUESTO.AsFloat)+'</importe>');
+      Add('                            </Imp>');
+      Add('</Impuestos>');
+      Add('</Factura>');
+    end;
+    stream := TMemoryStream.Create;
+    CodigoXML.SaveToFile(ExtractFilePath(Application.ExeName)+vNombreFile+'.XML'); // guardamos el código
+    CodigoXML.SaveToStream(stream);
+    stream.Position := 0;
+    vCodificadoXML:= EncodeFile(ExtractFilePath(Application.ExeName)+vNombreFile+'.XML');
+    vCodificadoXML:=StringReplace(vCodificadoXML,#$D#$A,'',[rfReplaceAll]);
+    vRegactualiza.Xml := vCodificadoXML;
+    CodigoXML.Free;
+    TxtUsuario.Text:=DMconn.QryDatosEmpresausuario.AsString;
+    TxtClave.Text:=DMconn.QryDatosEmpresapassword.AsString;
+    TxtUrlVal.Text:=DMconn.QryDatosEmpresaurltoken.AsString;
+    TxtUrlXML.Text:=DMconn.QryDatosEmpresaurlfactura.AsString;
+    //vResultadoToken:= ObtenerToken(DMPrincipal.fParametros.vUsuarioFacEl,DMPrincipal.fParametros.vPasswordFacEl,DMPrincipal.fParametros.vUrlAut);
+    vResultadoToken:= ObtenerToken(TxtUsuario.Text,TxtClave.Text,TxtUrlVal.Text);
+    if  Copy(vResultadoToken,1,5) = 'Error' then
+    begin
+//      Mensaje('Error'+chr(13)+vResultadoToken,'',DlgInformativo,[BtnDlgAceptar])
+      showmessage(vResultadoToken);
+    end
+    else begin
+//      Mensaje('Información'+chr(13)+vResultadoToken,'',DlgInformativo,[BtnDlgAceptar]);
+      vResultadoCufe :=EnvioXMLObtenerCufe(TxtUsuario.Text,TxtClave.Text,TxtUrlXML.Text,vResultadoToken,vCodificadoXML);
+      vRegactualiza.cufe := vResultadoCufe;
+      if COPY(vResultadoCufe,1,5) = 'ERROR' then
+      begin
+//        Mensaje('Error'+chr(13)+vResultadoCufe,'',DlgInformativo,[BtnDlgAceptar])
+          showmessage(vResultadoCufe);
+          vRegactualiza.error := vResultadoCufe;
+      end
+      else begin
+         vRegactualiza.error := '0';
+         ActualizaEstado(vRegactualiza.documento,vRegactualiza.Xml,vRegactualiza.cufe,vRegactualiza.error);
+      end;
+
+//      else begin
+//          vClaseDoc := RetornaClaseDocumento(Copy(pDocumento,1,4));
+//          if vClaseDoc = 4 then
+//          begin
+//            QryFacturasImp.Close;
+//            PrepararQry(vClaseDoc);
+//            QryFacturasImp.DataSet.ParamByName('PDOCUMENTO').AsString := pDocumento;
+//            QryFacturasImp.DataSet.ParamByName('pmoneda').AsString := vMoneda;
+//            QryFacturasImp.Open;
+//            FrxFactNormal.LoadFromFile(ExtractFilePath(application.ExeName)+'Facturas.fr3');
+//            FrxFactNormal.PrepareReport;
+//            FrxFactNormal.PreviewPages.Count;
+//            IF FrxFactNormal.PreviewPages.Count = 1 THEN
+//            begin
+//              if TfrxPageFooter(FrxFactNormal.FindComponent('PageFooter1'))<> nil then
+//              begin
+//               TfrxPageFooter(FrxFactNormal.FindComponent('PageFooter1')).PrintOnFirstPage := True;
+//               TfrxPageFooter(FrxFactNormal.FindComponent('PageFooter1')).PrintOnLastPage := True;
+//              end;
+//            end
+//            else begin
+//              if TfrxPageFooter(FrxFactNormal.FindComponent('PageFooter1'))<> nil then
+//              begin
+//                TfrxPageFooter(FrxFactNormal.FindComponent('PageFooter1')).PrintOnFirstPage := False;
+//                TfrxPageFooter(FrxFactNormal.FindComponent('PageFooter1')).PrintOnLastPage := True;
+//              end;
+//            end;
+//
+//            if TfrxMemoView(FrxFactNormal.FindComponent('MemCadenaQR'))<> nil then
+//            begin
+//              TfrxMemoView(FrxFactNormal.FindComponent('MemCadenaQR')).Text := 'NumFac: '+Copy(pDocumento,1,4)+QryMaestroFacturasFolio.AsString+ ' FecFac: '+
+//                                                                           QryMaestroFacturasfecha.AsString+QryMaestroFacturasHora.AsString+' NitFac: '+ dmprincipal.fParametros.vIdentidad+
+//                                                                           ' DocAdq: '+QryMaestroFacturasnitreceptor.AsString+ ' ValFac: '+FloatToStr(QryMaestroFacturasbaseimpuesto.AsFloat)+
+//                                                                           ' ValIva: '+Floattostr(QryMaestroFacturasTOTALIVA.AsFloat)+ ' ValOtroIm: 0.00'+ ' ValFacIm: '+Floattostr(QryMaestroFacturastotalfacturado.AsFloat)+
+//                                                                           ' Cufe: '+ vResultadoCufe;
+//
+//            end;
+//            if TfrxMemoView(FrxFactNormal.FindComponent('Mplaca')) <> nil then
+//              TfrxMemoView(FrxFactNormal.FindComponent('Mplaca')).Text := InputBox('Posdnet','Placa del Vehiculo','');
+//              DecodeDate(QryFacturasImpPCU_FECHA_VENCE.AsInteger,vanio,vmes,vdia);
+//            if TfrxMemoView(FrxFactNormal.FindComponent('MfechaVce')) <> nil then
+//            begin
+//              TfrxMemoView(FrxFactNormal.FindComponent('MfechaVce')).Text :=DateToStr(QryFacturasImpPCU_FECHA_VENCE.AsInteger);
+//            end;
+//            if TfrxMemoView(FrxFactNormal.FindComponent('Mpedido')) <> nil then
+//            begin
+//              TfrxMemoView(FrxFactNormal.FindComponent('Mpedido')).Text :=InputBox('Posdnet','Orden de trabajo Nro','');
+//           end;
+//            if TfrxMemoView(FrxFactNormal.FindComponent('MComentario')) <> nil then
+//            begin
+//              TfrxMemoView(FrxFactNormal.FindComponent('MComentario')).Text :=InputBox('Posdnet','Comentario','');
+//              if Length(TfrxMemoView(FrxFactNormal.FindComponent('MComentario')).Text)> 0 then
+//              begin
+//                if Length(TfrxMemoView(FrxFactNormal.FindComponent('MComentario')).Text)> 95 then
+//                begin
+//                  TfrxMemoView(FrxFactNormal.FindComponent('MComentario')).Height :=TfrxMemoView(FrxFactNormal.FindComponent('MComentario')).Height *2;
+//                  TfrxColumnFooter(FrxFactNormal.FindComponent('ColumnFooter1')).Height := TfrxColumnFooter(FrxFactNormal.FindComponent('ColumnFooter1')).Height *2;
+//                end;
+//               TfrxColumnFooter(FrxFactNormal.FindComponent('ColumnFooter1')).Visible := True;
+//              end;
+//            end;
+//            FrxFactNormal.PrepareReport();
+//            PDFExport.OpenAfterExport := True;
+//            PDFExport.ShowDialog := False;
+//            PDFExport.EmbeddedFonts := True;
+//            PDFExport.OpenAfterExport := True;
+//            PDFExport.FileName :=ExtractFilePath(Application.ExeName)+vNombreFile+'.pdf';
+//            FrxFactNormal.Export(PDFExport);
+//          end;
+      end;
+end;
+
+Function TFrmNC.ObtenerToken(pUsuario,pPassword,pUrl:String):AnsiString;
+    var
+      vIdHTTF1:TIdHTTP;
+      vSSL2: TIdSSLIOHandlerSocketOpenSSL;
+      vCadenaConexion,htmlDna,vCadenaToken:String;
+      vMemory:TMemoryStream;
+      vLstResultado:TStringList;
+      vToken:AnsiString;
+    begin
+      vMemory := TMemoryStream.Create;
+      vSSL2:= TIdSSLIOHandlerSocketOpenSSL.Create;
+      vIdHTTF1:= TIdHTTP.Create;
+      vIdHTTF1.HTTPOptions := [hoForceEncodeParams];
+      vIdHTTF1.IOHandler := vSSL2;
+      vLstResultado:=TStringList.Create;
+      vCadenaConexion := '{"username": "'+pUsuario+'", "password": "'+pPassword+'"}';
+      WriteStringToStream(vMemory,vCadenaConexion);
+      vMemory.Position := 0;
+      with vIdHTTF1 do
+      begin
+        Request.CustomHeaders.FoldLines := True;
+        Request.ContentType:= 'application/json';
+        Request.CharSet    := 'utf-8';
+        try
+          htmlDna:= Post(pUrl,vMemory);
+          vLstResultado.Add(htmlDna);
+          vCadenaToken :=  StringReplace(vLstResultado.Text,'{'#$A'  "token" : ','',[RfReplaceall]);
+          vCadenaToken :=  StringReplace(vCadenaToken,'"'#$A'}'#$D#$A,'',[RfReplaceall]);
+          vToken  := Copy(vCadenaToken,2,(length(vCadenaToken)-1));
+        except on E: Exception do
+               begin
+                 vToken := 'Error Obteniendo Token'+ e.Message;
+               end;
+        end;
+      end;
+      Result:= vToken;
+      FreeAndNil(vMemory);
+      FreeAndNil(vSSL2);
+      FreeAndNil(vIdHTTF1);
+      FreeAndNil(vLstResultado);
+    end;
+function EncodeFile(const FileName: string): AnsiString;
+  var
+    stream: TMemoryStream;
+  begin
+    stream := TMemoryStream.Create;
+    try
+      stream.LoadFromFile(Filename);
+      result := EncodeBase64(stream.Memory, (stream.Size));
+    finally
+      stream.Free;
+    end;
+  end;
+end.
